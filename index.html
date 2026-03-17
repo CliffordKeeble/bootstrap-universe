@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Universe Programme — Dr. Clifford Keeble</title>
+    <meta name="description" content="A mathematical physics framework deriving all physical constants and structures from the self-referential axiom 'I AM I' through the Poincaré homology sphere S³/2I. Independent research by Dr. Clifford Keeble, PhD.">
+    <meta name="keywords" content="Bootstrap Universe, Poincaré homology sphere, mathematical physics, fine structure constant, golden ratio, icosahedron, binary icosahedral group, Riemann Hypothesis, spectral gap, independent research, Clifford Keeble">
+    <meta name="author" content="Dr. Clifford Keeble">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Bootstrap Universe Programme">
+    <meta property="og:description" content="Deriving physical constants from geometry. A mathematical physics framework built on the Poincaré homology sphere S³/2I.">
+    <meta property="og:type" content="website">
+
+    <!-- Schema.org structured data for search engines -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ResearchProject",
+        "name": "Bootstrap Universe Programme",
+        "description": "A mathematical physics framework deriving all physical constants and structures from the self-referential axiom 'I AM I' through the Poincaré homology sphere S³/2I.",
+        "founder": {
+            "@type": "Person",
+            "name": "Dr. Clifford Keeble",
+            "jobTitle": "Independent Researcher",
+            "url": "https://orcid.org/0009-0003-6828-2155",
+            "sameAs": "https://orcid.org/0009-0003-6828-2155"
+        },
+        "location": "Woodbridge, Suffolk, UK"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --paper: #faf8f4;
+            --paper-warm: #f5f0e8;
+            --accent: #8b4513;
+            --accent-light: #c4956a;
+            --muted: #6b6b6b;
+            --rule: #d4c9b8;
+            --gold: #b8960c;
+            --blue-link: #2a5a8a;
+            --max-width: 760px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            font-size: 18px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Crimson Pro', Georgia, serif;
+            color: var(--ink);
+            background: var(--paper);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Header --- */
+        header {
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            border-bottom: 1px solid var(--rule);
+            background: linear-gradient(180deg, var(--paper-warm) 0%, var(--paper) 100%);
+        }
+
+        .programme-label {
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 500;
+            font-size: 0.72rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-weight: 300;
+            font-size: 2.8rem;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+            margin-bottom: 0.5rem;
+        }
+
+        h1 em {
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .subtitle {
+            font-size: 1.15rem;
+            font-weight: 300;
+            color: var(--muted);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .author-line {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--muted);
+        }
+
+        .author-line a {
+            color: var(--blue-link);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .author-line a:hover {
+            border-bottom-color: var(--blue-link);
+        }
+
+        /* --- Main content --- */
+        main {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.2rem;
+        }
+
+        h3 {
+            font-weight: 600;
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+            margin-top: 1.5rem;
+            color: var(--ink);
+        }
+
+        h3:first-child {
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        a {
+            color: var(--blue-link);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        a:hover {
+            border-bottom-color: var(--blue-link);
+        }
+
+        /* --- The Chain --- */
+        .chain {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.3rem 0.6rem;
+            padding: 2rem 1rem;
+            margin: 1.5rem 0;
+            background: var(--paper-warm);
+            border-radius: 4px;
+            border: 1px solid var(--rule);
+        }
+
+        .chain-step {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--ink);
+            white-space: nowrap;
+        }
+
+        .chain-arrow {
+            color: var(--accent-light);
+            font-size: 0.9rem;
+        }
+
+        .chain-label {
+            display: block;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: var(--muted);
+            text-align: center;
+            margin-top: 0.15rem;
+            letter-spacing: 0.02em;
+        }
+
+        .chain-node {
+            text-align: center;
+        }
+
+        /* --- Results table --- */
+        .result-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .result-card {
+            padding: 1.2rem 1.4rem;
+            background: var(--paper-warm);
+            border-left: 3px solid var(--accent-light);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .result-card .domain {
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 600;
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.4rem;
+        }
+
+        .result-card p {
+            font-size: 0.95rem;
+            line-height: 1.65;
+            margin-bottom: 0.4rem;
+        }
+
+        .result-card .match {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        /* --- Paper list --- */
+        .paper-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .paper-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--rule);
+            font-size: 0.92rem;
+            line-height: 1.55;
+        }
+
+        .paper-list li:last-child {
+            border-bottom: none;
+        }
+
+        .paper-title {
+            font-weight: 600;
+        }
+
+        .paper-detail {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-top: 0.2rem;
+        }
+
+        .doi {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.74rem;
+        }
+
+        /* --- Footer --- */
+        footer {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 2.5rem 2rem 4rem;
+            text-align: center;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        footer .links {
+            margin-bottom: 1rem;
+        }
+
+        footer .links a {
+            margin: 0 0.8rem;
+            color: var(--blue-link);
+        }
+
+        .hexagon {
+            color: var(--accent-light);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 600px) {
+            html { font-size: 16px; }
+            h1 { font-size: 2rem; }
+            header { padding: 3rem 1.5rem 2rem; }
+            main { padding: 0 1.5rem; }
+            .chain { padding: 1.5rem 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="programme-label">Independent Research Programme</div>
+    <h1>The Bootstrap Universe</h1>
+    <div class="subtitle">Deriving physics from geometry, not fitting it to data</div>
+    <div class="author-line">
+        <strong>Dr. Clifford Keeble</strong>, PhD &nbsp;·&nbsp;
+        Woodbridge, Suffolk, UK &nbsp;·&nbsp;
+        <a href="https://orcid.org/0009-0003-6828-2155" target="_blank" rel="noopener">ORCID 0009-0003-6828-2155</a>
+    </div>
+</header>
+
+<main>
+
+    <!-- ======== OVERVIEW ======== -->
+    <section>
+        <h2>What Is This?</h2>
+        <p>
+            The Bootstrap Universe Programme is an ongoing body of work in mathematical physics.
+            Its central claim is that all physical constants and structures — the fine structure constant,
+            particle masses, the cosmological constant, the dimensionality of space — can be
+            <em>derived</em> from a single self-referential axiom, <strong>"I AM I"</strong>,
+            through the geometry of the Poincaré homology sphere, S³/2I.
+        </p>
+        <p>
+            The programme currently comprises 134 papers, all openly available on Zenodo with
+            assigned DOIs. No free parameters. No curve-fitting. Every result is either
+            explicitly derived from the geometry or honestly marked as observed pattern.
+        </p>
+        <p>
+            This is not the work of an academic department. It is independent research by
+            a single researcher with a PhD in concurrent computation (Southampton, under Tony Hey)
+            and 20+ years as a senior software engineer, applying a debugger's methodology
+            to foundational physics.
+        </p>
+    </section>
+
+    <!-- ======== THE CHAIN ======== -->
+    <section>
+        <h2>The Derivation Chain</h2>
+        <p>
+            Seven forced steps lead from self-reference to all of physics.
+            Each step is not chosen but <em>required</em> — the unique resolution
+            at each stage.
+        </p>
+
+        <div class="chain">
+            <div class="chain-node">
+                <span class="chain-step">I AM I</span>
+                <span class="chain-label">self-reference</span>
+            </div>
+            <span class="chain-arrow">→</span>
+            <div class="chain-node">
+                <span class="chain-step">x = 1 + 1/x</span>
+                <span class="chain-label">fixed point</span>
+            </div>
+            <span class="chain-arrow">→</span>
+            <div class="chain-node">
+                <span class="chain-step">φ</span>
+                <span class="chain-label">golden ratio</span>
+            </div>
+            <span class="chain-arrow">→</span>
+            <div class="chain-node">
+                <span class="chain-step">φ⁵</span>
+                <span class="chain-label">quintic closure</span>
+            </div>
+            <span class="chain-arrow">→</span>
+            <div class="chain-node">
+                <span class="chain-step">Icosahedron</span>
+                <span class="chain-label">maximal symmetry</span>
+            </div>
+            <span class="chain-arrow">→</span>
+            <div class="chain-node">
+                <span class="chain-step">2I</span>
+                <span class="chain-label">binary icosahedral</span>
+            </div>
+            <span class="chain-arrow">→</span>
+            <div class="chain-node">
+                <span class="chain-step">S³/2I</span>
+                <span class="chain-label">Poincaré homology sphere</span>
+            </div>
+        </div>
+
+        <p>
+            The Poincaré homology sphere is the unique compact 3-manifold with
+            trivial homology but non-trivial fundamental group. Its spectral gap
+            λ₁ = 168 is the geometric origin of discreteness itself — the manifold
+            is too rigid for soft modes. Integers are consequences of this rigidity,
+            not axioms.
+        </p>
+    </section>
+
+    <!-- ======== KEY RESULTS ======== -->
+    <section>
+        <h2>Key Results</h2>
+        <p>
+            Selected results derived within the framework. Each is accompanied by a
+            published paper with full derivation. "Match" figures compare derived
+            values against experimentally measured constants.
+        </p>
+
+        <div class="result-grid">
+
+            <div class="result-card">
+                <div class="domain">Fine Structure Constant</div>
+                <p>α⁻¹ = e⁵ − 6√3 − 1 + 1/66</p>
+                <p class="match">25 parts per trillion accuracy</p>
+            </div>
+
+            <div class="result-card">
+                <div class="domain">Proton-to-Electron Mass Ratio</div>
+                <p>Derived from spectral gap and representation theory of 2I. Proton mass formula accurate to 0.09 ppm with zero free parameters.</p>
+            </div>
+
+            <div class="result-card">
+                <div class="domain">Lepton Magnetic Moments</div>
+                <p>Electron g-2 at 0.094σ from experiment; muon g-2 at 0.75σ. Fourth harmonic p(E) = 113 required by Heegner number structure.</p>
+            </div>
+
+            <div class="result-card">
+                <div class="domain">Cosmological Constant</div>
+                <p>Vacuum energy E_Λ = √(5/2) · (65/66) · m_e · α⁴</p>
+                <p class="match">97% match to observed value</p>
+            </div>
+
+            <div class="result-card">
+                <div class="domain">Dimensionality of Space</div>
+                <p>D = 3 derived as a theorem via the flip test and knot theory — not assumed as an axiom.</p>
+            </div>
+
+            <div class="result-card">
+                <div class="domain">Hadron Spectrum</div>
+                <p>11 hadron masses derived from S³/2I geometry.</p>
+                <p class="match">0.32% mean error, zero free parameters</p>
+            </div>
+
+            <div class="result-card">
+                <div class="domain">Strong Coupling Constant</div>
+                <p>α_s = 1/(3π − 1) = 0.1187</p>
+                <p class="match">99.5% match to measured value</p>
+            </div>
+
+            <div class="result-card">
+                <div class="domain">Spectral Gap &amp; Discreteness</div>
+                <p>λ₁ = 168 from Ikeda (1980) for the binary icosahedral space form. This is why integers exist — the manifold's rigidity forbids continuous modes.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ======== CLAY PROBLEMS ======== -->
+    <section>
+        <h2>Approaches to the Millennium Problems</h2>
+        <p>
+            The framework provides geometric approaches to several Clay Millennium Problems,
+            reframing each as a question about the topology of S³/2I rather than an isolated conjecture.
+        </p>
+
+        <h3>Riemann Hypothesis</h3>
+        <p>
+            The correct operator is golden-Hermitian (self-adjoint under √5 ↔ −√5) on S³/2I,
+            yielding rational eigenvalues. The spectral gap λ₁ = 168 silences
+            low-frequency incoherent modes, producing GUE statistics on the
+            Fibonacci spectral ladder. The functional equation is golden conjugation φ ↔ ψ.
+        </p>
+
+        <h3>Birch and Swinnerton-Dyer</h3>
+        <p>
+            BSD reframed through the quintic filter: A₅ non-solvability (Klein, 1884)
+            as the founding constraint of analytic number theory. What survives the
+            filter is cohomological — not computed but structural.
+        </p>
+
+        <h3>Yang–Mills Existence and Mass Gap</h3>
+        <p>
+            Published with derived coupling constant α_s = 1/(3π − 1).
+            The mass gap is the spectral gap of S³/2I.
+        </p>
+
+        <h3>Navier–Stokes</h3>
+        <p>
+            The continuum boundary and Kolmogorov −5/3 law derived from the
+            geometry of the finite lattice (~10⁸⁰ states).
+        </p>
+
+        <h3>P ≠ NP</h3>
+        <p>
+            State-dependent resonance: Karp reductions preserve verification structure
+            but not solution resonance, separating the complexity classes geometrically.
+        </p>
+    </section>
+
+    <!-- ======== SELECTED PAPERS ======== -->
+    <section>
+        <h2>Selected Papers</h2>
+        <p>
+            All papers are open access on Zenodo. The full catalogue comprises 134 papers.
+            Below is a selection of key publications. For the complete collection with
+            all DOIs, results tables, and testable predictions, see the
+            <a href="catalogue.html"><strong>full paper catalogue</strong></a>
+            or browse the
+            <a href="https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Keeble%2C%20Clifford%22&l=list&p=1&s=10&sort=newest" target="_blank" rel="noopener">Zenodo author search</a>.
+        </p>
+
+        <ul class="paper-list">
+            <li>
+                <span class="paper-title">Growth of Self-Reference</span> — Paper 115
+                <div class="paper-detail">Seven forced steps x = 1+1/x → φ → icosahedron → 2I → S³/2I</div>
+                <div class="paper-detail doi">DOI: <a href="https://doi.org/10.5281/zenodo.18979730" target="_blank" rel="noopener">10.5281/zenodo.18979730</a></div>
+            </li>
+            <li>
+                <span class="paper-title">Geometric Irreducibility</span> — Paper 116
+                <div class="paper-detail">Three-frame primality structure</div>
+                <div class="paper-detail doi">DOI: <a href="https://doi.org/10.5281/zenodo.18988875" target="_blank" rel="noopener">10.5281/zenodo.18988875</a></div>
+            </li>
+            <li>
+                <span class="paper-title">Spectral Gap and Origin of Discreteness</span> — Paper 117
+                <div class="paper-detail">λ₁ = 168 as geometric origin of integer discreteness; finite lattice ~10⁸⁰ states</div>
+                <div class="paper-detail doi">DOI: <a href="https://doi.org/10.5281/zenodo.18998392" target="_blank" rel="noopener">10.5281/zenodo.18998392</a></div>
+            </li>
+            <li>
+                <span class="paper-title">Quintic Insolvability and the Harmonic Programme</span> — Paper 118
+                <div class="paper-detail">Klein's 1884 A₅ non-solvability as founding constraint of analytic number theory</div>
+                <div class="paper-detail doi">DOI: <a href="https://doi.org/10.5281/zenodo.18999556" target="_blank" rel="noopener">10.5281/zenodo.18999556</a></div>
+            </li>
+            <li>
+                <span class="paper-title">Fibonacci Spectral Ladder</span> — Paper 119
+                <div class="paper-detail">Triple-rail ladder; Dirichlet L-function first zeros sorting into spectral bands</div>
+                <div class="paper-detail doi">DOI: <a href="https://doi.org/10.5281/zenodo.19004257" target="_blank" rel="noopener">10.5281/zenodo.19004257</a></div>
+            </li>
+        </ul>
+
+        <p style="margin-top: 1.5rem; font-size: 0.92rem;">
+            Further key topics across the catalogue include: proton mass derivation,
+            Hodge Quartet (four stable particles from de Rham cohomology),
+            Collatz convergence via 2-adic fixed point theory,
+            Zoll Universe (static S³ model with lattice-coupled redshift),
+            universe boundary derivations, lepton g-2,
+            and the Higgs/W/Z mass derivations.
+        </p>
+    </section>
+
+    <!-- ======== METHODOLOGY ======== -->
+    <section>
+        <h2>Methodology</h2>
+
+        <h3>Derive, don't fit</h3>
+        <p>
+            Every result in the programme is classified as DERIVED (follows from geometry
+            with explicit reasoning), OBSERVED (pattern matches but lacks full derivation),
+            or CONJECTURED. The Standard Model has 19 fitted parameters. This framework
+            aims for zero.
+        </p>
+
+        <h3>The contractor's advantage</h3>
+        <p>
+            This work applies an engineer's methodology to foundational physics.
+            No inherited constraints. No club membership determining which questions
+            are respectable. The framing determines what you can see — frame a problem
+            as engineering and you get mechanism. Frame it as a club problem and you
+            get club tools.
+        </p>
+
+        <h3>Adversarial review</h3>
+        <p>
+            Every paper undergoes mandatory adversarial review before publication:
+            a hostile but fair examination looking for undefined terms, unjustified leaps,
+            and curve-fitting disguised as derivation. Papers are rated on a five-star scale
+            and only published at the highest rating.
+        </p>
+    </section>
+
+    <!-- ======== ABOUT ======== -->
+    <section>
+        <h2>About the Researcher</h2>
+        <p>
+            Dr. Clifford Keeble holds a PhD from the University of Southampton's
+            Concurrent Computation Group under Professor Tony Hey, focusing on
+            self-timed logic and concurrent computation (CSP theory, transputers).
+        </p>
+        <p>
+            His 20+ year career as a senior .NET developer spans energy
+            (EDF Energy — Vehicle-to-Grid, Breakthrough R&D Award), financial services
+            (NatWest, Barclays, Aviva, Pershing Securities), risk modelling
+            (Willis Towers Watson — unifying 12 risk models), and government regulation
+            (Ofgem — ROC calculations at £1.3M/day). The pattern recognition and
+            debugging methodology developed across these domains is applied directly
+            to the physics.
+        </p>
+    </section>
+
+</main>
+
+<footer>
+    <span class="hexagon">⬡</span>
+    <div class="links">
+        <a href="catalogue.html">Paper Catalogue</a>
+        <a href="https://orcid.org/0009-0003-6828-2155" target="_blank" rel="noopener">ORCID</a>
+        <a href="https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Keeble%2C%20Clifford%22&l=list&p=1&s=10&sort=newest" target="_blank" rel="noopener">Zenodo</a>
+    </div>
+    <p>Bootstrap Universe Programme &nbsp;·&nbsp; Woodbridge, Suffolk, UK</p>
+    <p style="margin-top: 0.3rem;">Independent research. Open access. Zero free parameters.</p>
+</footer>
+
+</body>
+</html>
