@@ -11,7 +11,7 @@ Dr Clifford Keeble, Woodbridge UK, ORCID 0009-0003-6828-2155
 
 | Test | Question | z_overall | Decision |
 |------|----------|-----------|----------|
-| 1 | N=10000 sqrt(N) scaling | *pending* | *pending* |
+| 1 | N=10000 sqrt(N) scaling | **-22.91** | sqrt(N) CONFIRMED |
 | 2a | phi (baseline) | -8.14 | DISCOVERY |
 | 2b | sqrt(2) phase + golden norm | **-9.38** | DISCOVERY |
 | 2c | e phase + golden norm | -6.42 | DISCOVERY |
@@ -29,9 +29,38 @@ The norm detects zeros of both factors of the Dedekind zeta of Q(sqrt(5)).
 
 ## Test 1 — N=10000 massive-N robustness
 
-*Computation in progress. Results will be appended.*
+**Question:** Does the z = -8.14 result scale as sqrt(N)?
 
-Expected: z ~ -25.7 under sqrt(N) scaling from z = -8.14 at N = 1000.
+**Answer: Yes.** z = -22.91 at N = 10000 (predicted -25.7, ratio 0.89).
+
+| Quantity | Value |
+|----------|-------|
+| Riemann zeros | 10000 (range [14.13, 9877.78]) |
+| ζ_φ minima | 11675 (density 1.18/unit) |
+| Signal mean delta | 0.3239 |
+| Null mean delta | 0.4234 |
+| Null SE | 0.0043 |
+| z_overall | **-22.91** |
+| Predicted (sqrt(N)) | -25.7 |
+| Ratio actual/predicted | 0.89 |
+
+Bin-resolved z-scores (all strongly negative):
+
+| Bin | N zeros | z |
+|-----|---------|------|
+| [14, 3500) | 2966 | -12.07 |
+| [3500, 7000) | 3737 | -14.55 |
+| [7000, 10500) | 3297 | -12.96 |
+
+Per pre-registered interpretation: z in [-20, -30] means "sqrt(N) scaling
+confirmed; effect is constant across 100x sample expansion."
+
+The slight shortfall (0.89 of prediction) is consistent with weak
+saturation or hidden correlation in the null. It does not threaten
+the detection — 22.9 sigma is unambiguous.
+
+Computation: 10000 zetazeros fetched in 6127s (mpmath). 1.24M grid
+points scanned. 1000 MC null trials in 92s.
 
 ---
 
@@ -161,6 +190,6 @@ the claim is sharper and the falsification tests are included.
 ---
 
 *No deviations from registered protocol.*  
-*Test 1 pending; findings will be updated on completion.*  
+*All four tests complete.*  
 *Pre-registration SHA: c2b9d0d*  
 *Bootstrap Universe Programme*
