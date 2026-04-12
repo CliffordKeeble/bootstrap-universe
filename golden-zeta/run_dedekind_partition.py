@@ -49,47 +49,37 @@ def chi5(n):
     if r == 1 or r == 4: return 1
     return -1  # r == 2 or r == 3
 
-def compute_L_chi5_on_critical_line(t_values, N_sum=10000):
+def compute_L_chi5_vectorised(t_array, N_sum=10000):
     """
     Compute |L(1/2 + it, chi_5)| for array of t values.
-    Uses partial sum with Fejer smoothing.
+    Vectorised: outer loop over n, inner numpy over all t values.
     """
-    results = np.zeros(len(t_values))
+    t = np.asarray(t_array, dtype=np.float64)
+    re = np.zeros_like(t)
+    im = np.zeros_like(t)
 
-    for idx, t in enumerate(t_values):
-        re_sum = 0.0
-        im_sum = 0.0
-        for n in range(1, N_sum + 1):
-            c = chi5(n)
-            if c == 0:
-                continue
-            sigma = 1.0 - n / N_sum  # Fejer
-            amp = c * sigma / math.sqrt(n)
-            phase = t * math.log(n)
-            re_sum += amp * math.cos(phase)
-            im_sum += amp * math.sin(phase)
-        results[idx] = math.sqrt(re_sum**2 + im_sum**2)
+    for n in range(1, N_sum + 1):
+        c = chi5(n)
+        if c == 0:
+            continue
+        sigma = 1.0 - n / N_sum  # Fejer
+        amp = c * sigma / math.sqrt(n)
+        phase = t * math.log(n)
+        re += amp * np.cos(phase)
+        im += amp * np.sin(phase)
 
-    return results
+    return np.sqrt(re**2 + im**2)
 
 
 print("\nComputing L(chi_5) on critical line to find zeros...")
-print("(Using Fejer-smoothed Dirichlet series, N=10000 terms)")
+print("(Vectorised Fejer-smoothed Dirichlet series, N=10000 terms)")
 
 # Scan a range comparable to our Riemann zeros ([14, 1420])
-# L-function zeros are denser than zeta zeros at same height
-t_scan = np.arange(1.0, 1425.0, 0.01)  # finer grid for L-function
+t_scan = np.arange(1.0, 1425.0, 0.01)
 
 t0 = time.time()
-
-# Compute in chunks to show progress
-chunk_size = 20000
-L_values = np.zeros(len(t_scan))
-for i in range(0, len(t_scan), chunk_size):
-    chunk = t_scan[i:i+chunk_size]
-    L_values[i:i+len(chunk)] = compute_L_chi5_on_critical_line(chunk, N_sum=10000)
-    print(f"  L(chi_5) computed: {min(i+chunk_size, len(t_scan))}/{len(t_scan)} "
-          f"({time.time()-t0:.0f}s)")
+L_values = compute_L_chi5_vectorised(t_scan, N_sum=10000)
+print(f"  L(chi_5) computed: {len(t_scan)} points in {time.time()-t0:.0f}s")
 
 # Find zeros as minima
 L_minima_t, L_minima_v = find_minima(t_scan, L_values, percentile=2, dedup_window=0.1)
