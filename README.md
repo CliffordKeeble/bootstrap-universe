@@ -1,31 +1,30 @@
-Bootstrap Universe Programme
-Deriving physics from geometry, not fitting it to data.
-Dr. Clifford Keeble, PhD · Woodbridge, Suffolk, UK
-ORCID: 0009-0003-6828-2155
+# bootstrap-universe
 
-Overview
-The Bootstrap Universe Programme is an independent research programme in mathematical physics. Its central claim is that all physical constants and structures can be derived from a single self-referential axiom — "I AM I" — through the geometry of the Poincaré homology sphere, S³/2I.
-The programme currently comprises 134 papers, all openly available on Zenodo with assigned DOIs. See the full paper catalogue for all DOIs, results tables, and testable predictions.
-No free parameters. No curve-fitting. Every result is either explicitly derived from the geometry or honestly classified as an observed pattern.
-The Derivation Chain
-Seven forced steps lead from self-reference to physics:
-I AM I → x = 1 + 1/x → φ → φ⁵ → Icosahedron → 2I → S³/2I
-Each step is not chosen but required — the unique resolution at each stage. The Poincaré homology sphere's spectral gap λ₁ = 168 is the geometric origin of discreteness itself.
-Selected Results
-DomainResultAccuracyFine structure constantα⁻¹ = e⁵ − 6√3 − 1 + 1/6625 pptProton massSpectral gap derivation, zero free parameters0.09 ppmElectron g-2Geometric derivation0.094σMuon g-2Geometric derivation0.75σCosmological constantE_Λ = √(5/2)(65/66)m_eα⁴97% matchStrong couplingα_s = 1/(3π − 1)99.5% matchHadron spectrum11 masses from S³/2I0.32% mean errorSpace dimensionsD = 3 derived as theoremExact
-Selected Papers
+Computational companions to the papers of the Bootstrap Universe Programme — an independent research programme that derives physical and mathematical structure from a single axiom of self-reference (x = 1 + 1/x → φ), working through the forced consequences to the Poincaré homology sphere S³/2I as the structural shape of spacetime.
 
-Paper 115 — "Growth of Self-Reference" · DOI: 10.5281/zenodo.18979730
-Paper 116 — "Geometric Irreducibility" · DOI: 10.5281/zenodo.18988875
-Paper 117 — "Spectral Gap and Origin of Discreteness" · DOI: 10.5281/zenodo.18998392
-Paper 118 — "Quintic Insolvability and the Harmonic Programme" · DOI: 10.5281/zenodo.18999556
-Paper 119 — "Fibonacci Spectral Ladder" · DOI: 10.5281/zenodo.19004257
+Author: Dr. Clifford Keeble, PhD
+ORCID: [0009-0003-6828-2155](https://orcid.org/0009-0003-6828-2155)
+Paper catalogue: Zenodo — [all versions](https://doi.org/10.5281/zenodo.17906573)
+Location: Woodbridge, UK
 
-Full catalogue: Zenodo author search
-Methodology
-Every result is classified as DERIVED (follows from geometry with explicit reasoning), OBSERVED (pattern matches without full derivation), or CONJECTURED. The Standard Model has 19 fitted parameters. This framework aims for zero.
-Every paper undergoes mandatory adversarial review before publication — a hostile but fair examination for undefined terms, unjustified leaps, and curve-fitting disguised as derivation.
-About
-Dr. Clifford Keeble holds a PhD from the University of Southampton (Concurrent Computation Group, Tony Hey). His 20+ year career as a senior .NET developer spans energy (EDF), financial services (NatWest, Barclays, Aviva), risk modelling (Willis Towers Watson), and government regulation (Ofgem). The debugging methodology developed across these domains is applied directly to foundational physics.
+## Contents
 
-⬡ Independent research. Open access. Zero free parameters.
+- **[`golden-zeta/`](./golden-zeta)** — companion to Paper 150 v2.0, *The Golden Norm Hears the Dedekind Zeta* ([DOI](https://doi.org/10.5281/zenodo.19162130)). Pre-registered four-test falsification protocol confirming that the Dedekind zeta ζ<sub>ℚ(√5)</sub>(s) = ζ(s) · L(s, χ<sub>5</sub>) has its zeros detectable as statistical minima of a Fejér-weighted Dirichlet sum under the golden-field norm, at z = −22.91 on N = 10,000 Riemann zeros.
+
+- **[`golden-dirac/`](./golden-dirac)** — companion to Paper 191, *The Golden Dirac Algebra: Gamma Matrices for S³/2I over ℤ[φ]* ([DOI](https://doi.org/10.5281/zenodo.19529063)). Machine-verified construction; see subdirectory for details.
+
+Further subdirectories will be added as other papers acquire computational companions. Each subdirectory is self-contained and carries its own README explaining scope, reproduction instructions, and the paper it accompanies.
+
+## Programme context
+
+Over 170 papers are deposited on Zenodo under permanent DOIs. Every claim is tagged DERIVED, OBSERVED, STRUCTURAL, or CONJECTURED. The work is not yet peer-reviewed — the derivations are open, and the community is invited to test, extend, and claim their share of the ground.
+
+## Licence
+
+MIT. See [`LICENSE`](./LICENSE).
+
+## Correspondence
+
+[academia.edu/CliffordKeeble](https://independent.academia.edu/CliffordKeeble)
+
+🐕☕⬡
