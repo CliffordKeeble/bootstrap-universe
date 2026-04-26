@@ -108,10 +108,91 @@ def path1_empirical(layer1_csv_path):
 
 
 # ---------- Path 2: Rubinstein-Sarnak Monte Carlo ----------
-# (TODO: implement in next commit)
+#
+# Under GRH + LI, the limiting distribution of the normalised bias
+# E(x) * log(x) / sqrt(x) under the logarithmic measure on x is
+#
+#     Y = c + 2 * Sum_n  cos(Theta_n) / |rho_n|
+#
+# with Theta_n iid uniform on [0, 2pi], |rho_n| = sqrt(1/4 + gamma_n^2),
+# and c = 1 for the q=5 quadratic (squares-vs-non-squares) race.
+#
+# Derivation sketch: from Layer 2 we have, after amplitude-phase combine,
+#   E_norm(x) = c + 2 Sum_n cos(gamma_n log x - phi_n) / |rho_n|
+# where phi_n = arctan(2 gamma_n). Under LI, (gamma_n log x - phi_n) mod 2pi
+# becomes equidistributed on the infinite-dim torus as x runs through the
+# log-uniform measure, hence the iid uniform Theta_n. (Rubinstein-Sarnak 1994,
+# Granville-Martin 2006 §3.) The c = 1 offset is the Chebyshev bias term
+# already exhibited and validated in Layer 2.
 
-def path2_rs_montecarlo(gammas, c=1.0, n_mc=1_000_000, seed=20260426):
-    raise NotImplementedError('path2_rs_montecarlo: pending implementation')
+def path2_rs_montecarlo(gammas, c=1.0, n_mc=1_000_000, seed=20260426,
+                        chunk=None):
+    """
+    Monte Carlo estimate of delta = P(Y > 0) under the RS limiting
+    distribution. Returns a dict of point estimate, binomial CI, and
+    Y-distribution moments. Chunks the MC to bound memory.
+    """
+    rng = np.random.default_rng(seed)
+    g = np.asarray(gammas, dtype=np.float64)
+    rho_abs = np.sqrt(0.25 + g * g)
+    coeffs = 2.0 / rho_abs                              # shape (N_zeros,)
+
+    if chunk is None:
+        # cap rough memory at ~100 MB float64: chunk * N * 8 bytes
+        chunk = max(1, min(n_mc, 100_000_000 // (8 * len(g) + 1)))
+    n_pos = 0
+    Y_sum = 0.0
+    Y_sq_sum = 0.0
+    Y_min = float('inf')
+    Y_max = float('-inf')
+    done = 0
+    while done < n_mc:
+        m = min(chunk, n_mc - done)
+        thetas = rng.uniform(0.0, 2.0 * np.pi, size=(m, len(g)))
+        Y = c + np.cos(thetas) @ coeffs                  # shape (m,)
+        n_pos += int(np.sum(Y > 0))
+        Y_sum += float(Y.sum())
+        Y_sq_sum += float((Y * Y).sum())
+        if Y.size:
+            Y_min = min(Y_min, float(Y.min()))
+            Y_max = max(Y_max, float(Y.max()))
+        done += m
+
+    delta = n_pos / n_mc
+    se = float(np.sqrt(max(delta * (1 - delta), 0.0) / n_mc))
+    Y_mean = Y_sum / n_mc
+    Y_var = Y_sq_sum / n_mc - Y_mean * Y_mean
+
+    return {
+        'n_zeros': len(g),
+        'c': c,
+        'n_mc': n_mc,
+        'n_positive': n_pos,
+        'delta': delta,
+        'se': se,
+        'ci95_lo': max(0.0, delta - 1.96 * se),
+        'ci95_hi': min(1.0, delta + 1.96 * se),
+        'Y_mean': Y_mean,
+        'Y_std': float(np.sqrt(max(Y_var, 0.0))),
+        'Y_min': Y_min,
+        'Y_max': Y_max,
+        'gamma_min': float(g[0]),
+        'gamma_max': float(g[-1]),
+    }
+
+
+def path2_n_sweep(gammas_full, c=1.0, n_mc=1_000_000, seed=20260426,
+                  Ns=(10, 15, 20, 25)):
+    """Truncation sensitivity: same MC seed, vary N. Same RNG state per N is
+    not enforced (each call reseeds), so sweep results are independent samples,
+    which is what we want for honest CIs."""
+    out = {}
+    for N in Ns:
+        if N > len(gammas_full):
+            continue
+        out[N] = path2_rs_montecarlo(gammas_full[:N], c=c, n_mc=n_mc,
+                                     seed=seed + N)
+    return out
 
 
 # ---------- Path 3: LMFDB / literature lookup ----------
@@ -166,8 +247,35 @@ def main():
     print(f'  note: binomial SE assumes independence; E(x) is autocorrelated,')
     print(f'        so true uncertainty is larger than {p1["binom_se"]:.4f}.')
 
-    # TODO: Path 2, Path 3, write CSV, convergence summary.
-    print('\n(Paths 2 and 3 pending in subsequent commits.)')
+    print(f'\n--- Path 2 (DERIVED, GRH+LI): Rubinstein-Sarnak Monte Carlo ---')
+    print(f'  refining {args.n_zeros} zeros at dps={args.dps}...')
+    t0 = time.time()
+    gammas_mp = get_zeros(n=args.n_zeros, dps=args.dps, validate=True,
+                          verbose=False)
+    gammas = np.array([float(g) for g in gammas_mp], dtype=np.float64)
+    print(f'    done in {time.time() - t0:.1f}s; '
+          f'gamma_1={gammas[0]:.4f}, gamma_N={gammas[-1]:.4f}')
+
+    print(f'  running MC (n_mc={args.n_mc:,}, seed={args.seed})...')
+    t0 = time.time()
+    p2 = path2_rs_montecarlo(gammas, c=1.0, n_mc=args.n_mc, seed=args.seed)
+    print(f'    done in {time.time() - t0:.1f}s')
+    print(f'  Y distribution: mean={p2["Y_mean"]:+.4f}, std={p2["Y_std"]:.4f}, '
+          f'range [{p2["Y_min"]:+.3f}, {p2["Y_max"]:+.3f}]')
+    print(f'  delta_RS = {p2["delta"]:.5f}  '
+          f'[95% binom CI {p2["ci95_lo"]:.5f}, {p2["ci95_hi"]:.5f}]  '
+          f'(SE = {p2["se"]:.5f})')
+
+    print(f'\n  N-sweep (truncation sensitivity, same n_mc each):')
+    sweep = path2_n_sweep(gammas, c=1.0, n_mc=args.n_mc, seed=args.seed)
+    print(f'  {"N":>3} {"delta":>8} {"se":>8} {"Y_std":>8} {"Y_min":>9}')
+    for N in sorted(sweep.keys()):
+        s = sweep[N]
+        print(f'  {N:>3d} {s["delta"]:>8.5f} {s["se"]:>8.5f} '
+              f'{s["Y_std"]:>8.4f} {s["Y_min"]:>+9.3f}')
+
+    # TODO: Path 3, write CSV, convergence summary.
+    print('\n(Path 3 pending in next commit.)')
 
 
 if __name__ == '__main__':
