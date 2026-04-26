@@ -21,9 +21,12 @@ stubborns = 40,152, E = +75 (E_norm = +1.03). Stubborn lead is the
 Granville–Martin Table 4 expectation (their mod-10 reorganisation maps
 cleanly to mod-5 for primes > 5).
 
-Sign frequencies over the 200 log-spaced samples are reported in the
-Layer 1 console output (positive E dominates, as expected for the QR/QNR
-race at mod 5).
+E(x) > 0 at all 200 log-spaced samples in [100, 10⁸]; no sign change
+within this window. Stark (1971) located sign changes for the q=5 race
+at much larger x; the asymptotic logarithmic-measure density is < 1
+(Path 2 of the density module below estimates it under GRH+LI), but the
+finite-X empirical fraction here is exactly unity, consistent with the
+very strong q=5 bias in this range.
 
 Outputs: `chebyshev_bias_data.csv`, `chebyshev_bias.png`.
 
