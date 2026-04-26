@@ -1,0 +1,11 @@
+path,quantity,value,note
+1,delta_local,1.000000,"fraction in [100, 100000000]"
+1,delta_rs_strict,0.750000,with (1/ln X) prefactor
+2,delta_RS_25,0.998517,"MC n=1000000, seed=20260426, c=1, N=25"
+2,delta_RS_se,0.000038,binomial standard error
+2,delta_RS_N10,0.999692,"truncation sweep, N=10"
+2,delta_RS_N15,0.999170,"truncation sweep, N=15"
+2,delta_RS_N20,0.998879,"truncation sweep, N=20"
+2,delta_RS_N25,0.998499,"truncation sweep, N=25"
+3,q4_sanity,0.996685,"q=4 cross-check with c=1, first 25 chi_4 zeros"
+3,q4_literature,0.9959,R-S 1994
