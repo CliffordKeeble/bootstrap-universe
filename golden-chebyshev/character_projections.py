@@ -119,10 +119,17 @@ def _sanity_conjugate_pair(s, tol=mpf(10) ** -30):
     """KEY GATING SANITY: P(chi_2)(conj(s)) = conj(P(chi_3)(s)).
 
     Holds because chi_2 = conj(chi_3) and the Hurwitz argument a/120 is real
-    (so S(conj(s), r) = conj(S(s, r))).
+    (so S(conj(s), r) = conj(S(s, r)) by Schwarz reflection). With both
+    factors conjugating exactly, residuals are *algebraically* zero, not
+    just at the dps roundoff floor - this is checked numerically below.
 
     The phase-lock test depends on this relation; if it fails, the arg ratio
     of P(chi_2)/P(chi_3) at zeta zeros has no defined symmetry to lock to.
+
+    Test points include both critical-line zeros (rho_1, rho_2) and an
+    off-line point (s = 2 + i). The off-line check is deliberate: a passing
+    on-line test could be coincidence specific to the critical line; the
+    off-line check confirms the relation is structural, not positional.
     """
     s = mpc(s)
     s_bar = mp_conj(s)
