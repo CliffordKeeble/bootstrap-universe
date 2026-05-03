@@ -1,0 +1,43 @@
+Sign sequence analysis - Layer 3a follow-up Task 4
+============================================================
+
+Source: phase_lock_results_n200.csv  (N=200)
+Counts: + = 80, - = 120  (40.0% / 60.0%)
+
+Test 1 (binomial, two-sided, H0: p=0.5):
+  z = -2.8284, p = 0.0047
+
+Test 2 (Wald-Wolfowitz runs):
+  observed = 106, expected = 97.00 +/- 6.77
+  z = +1.3294, p = 0.1837
+
+Test 3 (autocorrelation, 95% band = +/- 0.1386):
+  lag    r_lag
+    1   -0.0992
+    2   +0.1350
+    3   +0.0275
+    4   -0.0633
+    5   +0.1292
+    6   -0.0742
+    7   +0.0558
+    8   -0.1558  *
+    9   -0.0467
+   10   -0.0208
+   11   +0.0050
+   12   +0.0308
+   13   -0.0350
+   14   -0.1133
+   15   +0.0375
+   16   +0.0217
+   17   +0.0683
+   18   +0.1067
+   19   +0.0283
+   20   +0.0875
+
+Test 4 (spacing correlations, 95% band = +/- 0.1389):
+  Pearson(sign,   spacing) = -0.1489
+  Pearson(change, spacing) = +0.0297
+  mean spacing | sign = + : 1.7557
+  mean spacing | sign = - : 2.0319
+  mean spacing | change   : 1.9464
+  mean spacing | same     : 1.8923
