@@ -116,8 +116,15 @@ if __name__ == "__main__":
     print()
 
     # Numerical sanity battery.
+    #
+    # At s=2 the right-hand side has a closed form usable for an independent
+    # cross-check beyond mpmath's own zeta:
+    #     RHS(s=2) = (1 - 1/25) * pi^2/6  =  (24/25) * pi^2/6  =  4 * pi^2 / 25
+    # which is approximately 1.5791367041742973790135... and is what both
+    # sides should print. (Hand-verified against the LHS Hurwitz sum by
+    # the residual being at the dps roundoff floor.)
     test_points = [
-        ("s = 2 (real, away from zeros)", mpf(2)),
+        ("s = 2 (real, away from zeros) [closed form: 4*pi^2/25]", mpf(2)),
         ("s = 3 (real, away from zeros)", mpf(3)),
         ("s = 2 + i (complex, away from zeros)", mpc(2, 1)),
         ("s = rho_1 = 0.5 + i*gamma_1 (first zeta zero)", _mp_ctx.zetazero(1)),
