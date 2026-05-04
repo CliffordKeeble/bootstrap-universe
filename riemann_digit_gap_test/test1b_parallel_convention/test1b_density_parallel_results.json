@@ -1,0 +1,68 @@
+{
+  "version": "v1.0",
+  "preregistration_doc": "pre_registration.md",
+  "preregistration": {
+    "convention": "gamma_d = 2*pi * d / ln(10)",
+    "boundary_1": [
+      161.4524,
+      171.4524
+    ],
+    "boundary_2": [
+      213.2982,
+      223.2982
+    ],
+    "window_width": 10.0,
+    "control_regions": [
+      [
+        55.0,
+        130.0
+      ],
+      [
+        150.0,
+        161.4524
+      ],
+      [
+        189.0,
+        213.2982
+      ],
+      [
+        223.2982,
+        239.3594
+      ]
+    ],
+    "n_permutations": 1000,
+    "seed": 316,
+    "T_grid_step": 0.05,
+    "selberg_null_formula": "Delta_smooth(T) = -(T/2pi)*log(5) + 1"
+  },
+  "data": {
+    "n_zeta_zeros": 100,
+    "n_lchi5_zeros": 166,
+    "zeta_max_gamma": 236.5242296658162,
+    "lchi5_max_gamma": 244.3593623604455
+  },
+  "observed": {
+    "rms_boundary_1": 0.6510116875059843,
+    "rms_boundary_2": 0.6437918173223834
+  },
+  "null": {
+    "rms_mean": 0.6275434156572613,
+    "rms_median": 0.6372470426768633,
+    "rms_std": 0.06251509941604559,
+    "rms_max": 0.7892192297535662,
+    "rms_quantiles": {
+      "0.50": 0.6372470426768633,
+      "0.90": 0.7057571436323911,
+      "0.95": 0.7226106396675193,
+      "0.99": 0.754357231420764
+    }
+  },
+  "p_values": {
+    "boundary_1": 0.42857142857142855,
+    "boundary_2": 0.45854145854145856,
+    "convention": "one-sided (RMS_null >= RMS_obs); (count + 1) / (N + 1) Laplace correction"
+  },
+  "verdict": "FAIL",
+  "pre_registered_outcome": "A",
+  "pass_criterion": "p_emp(1) < 0.05 AND p_emp(2) < 0.05"
+}
