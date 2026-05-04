@@ -1,0 +1,65 @@
+{
+  "version": "v1.0",
+  "preregistration": {
+    "boundary_1": [
+      135.0,
+      145.0
+    ],
+    "boundary_2": [
+      179.0,
+      189.0
+    ],
+    "window_width": 10.0,
+    "control_regions": [
+      [
+        55.0,
+        130.0
+      ],
+      [
+        150.0,
+        175.0
+      ],
+      [
+        190.0,
+        215.0
+      ]
+    ],
+    "n_permutations": 1000,
+    "seed": 179,
+    "T_grid_step": 0.05,
+    "selberg_null_formula": "Delta_smooth(T) = -(T/2pi)*log(5) + 1"
+  },
+  "data": {
+    "n_zeta_zeros": 100,
+    "n_lchi5_zeros": 146,
+    "zeta_max_gamma": 236.5242296658162,
+    "lchi5_max_gamma": 219.251180826726,
+    "zeta_count_at_140": 48,
+    "lchi5_count_at_140": 83,
+    "zeta_count_at_184": 70,
+    "lchi5_count_at_184": 117
+  },
+  "observed": {
+    "rms_boundary_1": 0.6430083252146692,
+    "rms_boundary_2": 0.6888928566093022
+  },
+  "null": {
+    "rms_mean": 0.6140059473849885,
+    "rms_median": 0.6205580322629183,
+    "rms_std": 0.057645736928347485,
+    "rms_max": 0.7396742593302679,
+    "rms_quantiles": {
+      "0.50": 0.6205580322629183,
+      "0.90": 0.6849554150497282,
+      "0.95": 0.708629188365009,
+      "0.99": 0.7326447253636283
+    }
+  },
+  "p_values": {
+    "boundary_1": 0.35264735264735264,
+    "boundary_2": 0.0919080919080919,
+    "convention": "one-sided (RMS_null >= RMS_obs); (count + 1) / (N + 1) to avoid p=0"
+  },
+  "verdict": "FAIL",
+  "pass_criterion": "p_emp(boundary_1) < 0.05 AND p_emp(boundary_2) < 0.05"
+}
