@@ -49,6 +49,41 @@ ends here; the next arc starts elsewhere with a clean slate.
   architecture updates (anchor moves to special-value transitions); the
   individual programme components stand.
 
+---
+
+## Addendum — Test 1b (parallel-convention) result, 4 May 2026
+
+Mr Adversary follow-up to Paper 197 v0.1 raised: only one of two
+defensible heuristic conventions for linking digit-gap scale 10ᵈ to
+zero-height γ had been tested. Test 1b ran the second convention
+γ = 2π · d / ln(10) under independent pre-registration (separate seed,
+separate windows, separate control regions, separate folder).
+
+**Result: FAIL. Outcome A — both boundaries null at decisive p.**
+
+| | window | observed RMS | p_emp |
+|---|---|---|---|
+| Boundary 1 (γ ≈ 166.45) | [161.45, 171.45] | 0.6510 | 0.429 |
+| Boundary 2 (γ ≈ 218.30) | [213.30, 223.30] | 0.6438 | 0.459 |
+
+Neither marginal. The signal that *had* been suggestive in Test 1
+boundary 2 (p = 0.092) disappears entirely under the resonance-period
+convention. The two conventions disagree about predicted γ by factor
+~1.19, and neither location shows windowed RMS anomaly above permutation
+null.
+
+The density-transition framing is now null at **both** defensible
+conventions. The original arc message stands and is strengthened: the
+framework's empirical anchor moves decisively to special-value
+transitions for the next paper. No third-convention test launched
+(Pattern 41 — parking discipline).
+
+Calibration upgraded to 9 points (Mr Adversary recommendation),
+calibrated cleanly through T = 230 (mean drift −0.0006).
+
+Sub-arc files: `test1b_parallel_convention/` (pre-registration,
+calibration audit, locked test, result, plot, README).
+
 🐕☕⬡
 
-— Mr Code, signing off this arc.
+— Mr Code, signing off this arc (now with parallel-convention closure).
