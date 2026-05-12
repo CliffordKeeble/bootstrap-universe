@@ -1,0 +1,451 @@
+{
+  "max_l": 20,
+  "fibonacci_rungs_in_range": {
+    "0": "F_1^2 - 1",
+    "3": "F_3^2 - 1",
+    "8": "F_4^2 - 1",
+    "24": "F_5^2 - 1",
+    "63": "F_6^2 - 1",
+    "168": "F_7^2 - 1",
+    "440": "F_8^2 - 1",
+    "1155": "F_9^2 - 1"
+  },
+  "lucas_rungs_in_range": {
+    "0": "L_1^2 - 1",
+    "3": "L_0^2 - 1",
+    "8": "L_2^2 - 1",
+    "15": "L_3^2 - 1",
+    "48": "L_4^2 - 1",
+    "120": "L_5^2 - 1",
+    "323": "L_6^2 - 1",
+    "840": "L_7^2 - 1"
+  },
+  "face_closure": {
+    "35": "D! = 6, D!^2 - 1"
+  },
+  "groups": [
+    {
+      "name": "2T",
+      "order": 24,
+      "max_l": 20,
+      "multiplicities": [
+        {
+          "l": 0,
+          "mult": 1,
+          "dim": 1,
+          "eigenvalue": 0
+        },
+        {
+          "l": 1,
+          "mult": 0,
+          "dim": 2,
+          "eigenvalue": 3
+        },
+        {
+          "l": 2,
+          "mult": 0,
+          "dim": 3,
+          "eigenvalue": 8
+        },
+        {
+          "l": 3,
+          "mult": 0,
+          "dim": 4,
+          "eigenvalue": 15
+        },
+        {
+          "l": 4,
+          "mult": 0,
+          "dim": 5,
+          "eigenvalue": 24
+        },
+        {
+          "l": 5,
+          "mult": 0,
+          "dim": 6,
+          "eigenvalue": 35
+        },
+        {
+          "l": 6,
+          "mult": 1,
+          "dim": 7,
+          "eigenvalue": 48
+        },
+        {
+          "l": 7,
+          "mult": 0,
+          "dim": 8,
+          "eigenvalue": 63
+        },
+        {
+          "l": 8,
+          "mult": 1,
+          "dim": 9,
+          "eigenvalue": 80
+        },
+        {
+          "l": 9,
+          "mult": 0,
+          "dim": 10,
+          "eigenvalue": 99
+        },
+        {
+          "l": 10,
+          "mult": 0,
+          "dim": 11,
+          "eigenvalue": 120
+        },
+        {
+          "l": 11,
+          "mult": 0,
+          "dim": 12,
+          "eigenvalue": 143
+        },
+        {
+          "l": 12,
+          "mult": 2,
+          "dim": 13,
+          "eigenvalue": 168
+        },
+        {
+          "l": 13,
+          "mult": 0,
+          "dim": 14,
+          "eigenvalue": 195
+        },
+        {
+          "l": 14,
+          "mult": 1,
+          "dim": 15,
+          "eigenvalue": 224
+        },
+        {
+          "l": 15,
+          "mult": 0,
+          "dim": 16,
+          "eigenvalue": 255
+        },
+        {
+          "l": 16,
+          "mult": 1,
+          "dim": 17,
+          "eigenvalue": 288
+        },
+        {
+          "l": 17,
+          "mult": 0,
+          "dim": 18,
+          "eigenvalue": 323
+        },
+        {
+          "l": 18,
+          "mult": 2,
+          "dim": 19,
+          "eigenvalue": 360
+        },
+        {
+          "l": 19,
+          "mult": 0,
+          "dim": 20,
+          "eigenvalue": 399
+        },
+        {
+          "l": 20,
+          "mult": 2,
+          "dim": 21,
+          "eigenvalue": 440
+        }
+      ],
+      "gap_l": 6,
+      "lambda_1": 48,
+      "rail_placement": {
+        "on_fibonacci": null,
+        "on_lucas": "L_4^2 - 1",
+        "on_face": null,
+        "off_all": false
+      }
+    },
+    {
+      "name": "2O",
+      "order": 48,
+      "max_l": 20,
+      "multiplicities": [
+        {
+          "l": 0,
+          "mult": 1,
+          "dim": 1,
+          "eigenvalue": 0
+        },
+        {
+          "l": 1,
+          "mult": 0,
+          "dim": 2,
+          "eigenvalue": 3
+        },
+        {
+          "l": 2,
+          "mult": 0,
+          "dim": 3,
+          "eigenvalue": 8
+        },
+        {
+          "l": 3,
+          "mult": 0,
+          "dim": 4,
+          "eigenvalue": 15
+        },
+        {
+          "l": 4,
+          "mult": 0,
+          "dim": 5,
+          "eigenvalue": 24
+        },
+        {
+          "l": 5,
+          "mult": 0,
+          "dim": 6,
+          "eigenvalue": 35
+        },
+        {
+          "l": 6,
+          "mult": 0,
+          "dim": 7,
+          "eigenvalue": 48
+        },
+        {
+          "l": 7,
+          "mult": 0,
+          "dim": 8,
+          "eigenvalue": 63
+        },
+        {
+          "l": 8,
+          "mult": 1,
+          "dim": 9,
+          "eigenvalue": 80
+        },
+        {
+          "l": 9,
+          "mult": 0,
+          "dim": 10,
+          "eigenvalue": 99
+        },
+        {
+          "l": 10,
+          "mult": 0,
+          "dim": 11,
+          "eigenvalue": 120
+        },
+        {
+          "l": 11,
+          "mult": 0,
+          "dim": 12,
+          "eigenvalue": 143
+        },
+        {
+          "l": 12,
+          "mult": 1,
+          "dim": 13,
+          "eigenvalue": 168
+        },
+        {
+          "l": 13,
+          "mult": 0,
+          "dim": 14,
+          "eigenvalue": 195
+        },
+        {
+          "l": 14,
+          "mult": 0,
+          "dim": 15,
+          "eigenvalue": 224
+        },
+        {
+          "l": 15,
+          "mult": 0,
+          "dim": 16,
+          "eigenvalue": 255
+        },
+        {
+          "l": 16,
+          "mult": 1,
+          "dim": 17,
+          "eigenvalue": 288
+        },
+        {
+          "l": 17,
+          "mult": 0,
+          "dim": 18,
+          "eigenvalue": 323
+        },
+        {
+          "l": 18,
+          "mult": 1,
+          "dim": 19,
+          "eigenvalue": 360
+        },
+        {
+          "l": 19,
+          "mult": 0,
+          "dim": 20,
+          "eigenvalue": 399
+        },
+        {
+          "l": 20,
+          "mult": 1,
+          "dim": 21,
+          "eigenvalue": 440
+        }
+      ],
+      "gap_l": 8,
+      "lambda_1": 80,
+      "rail_placement": {
+        "on_fibonacci": null,
+        "on_lucas": null,
+        "on_face": null,
+        "off_all": true
+      }
+    },
+    {
+      "name": "2I",
+      "order": 120,
+      "max_l": 20,
+      "multiplicities": [
+        {
+          "l": 0,
+          "mult": 1,
+          "dim": 1,
+          "eigenvalue": 0
+        },
+        {
+          "l": 1,
+          "mult": 0,
+          "dim": 2,
+          "eigenvalue": 3
+        },
+        {
+          "l": 2,
+          "mult": 0,
+          "dim": 3,
+          "eigenvalue": 8
+        },
+        {
+          "l": 3,
+          "mult": 0,
+          "dim": 4,
+          "eigenvalue": 15
+        },
+        {
+          "l": 4,
+          "mult": 0,
+          "dim": 5,
+          "eigenvalue": 24
+        },
+        {
+          "l": 5,
+          "mult": 0,
+          "dim": 6,
+          "eigenvalue": 35
+        },
+        {
+          "l": 6,
+          "mult": 0,
+          "dim": 7,
+          "eigenvalue": 48
+        },
+        {
+          "l": 7,
+          "mult": 0,
+          "dim": 8,
+          "eigenvalue": 63
+        },
+        {
+          "l": 8,
+          "mult": 0,
+          "dim": 9,
+          "eigenvalue": 80
+        },
+        {
+          "l": 9,
+          "mult": 0,
+          "dim": 10,
+          "eigenvalue": 99
+        },
+        {
+          "l": 10,
+          "mult": 0,
+          "dim": 11,
+          "eigenvalue": 120
+        },
+        {
+          "l": 11,
+          "mult": 0,
+          "dim": 12,
+          "eigenvalue": 143
+        },
+        {
+          "l": 12,
+          "mult": 1,
+          "dim": 13,
+          "eigenvalue": 168
+        },
+        {
+          "l": 13,
+          "mult": 0,
+          "dim": 14,
+          "eigenvalue": 195
+        },
+        {
+          "l": 14,
+          "mult": 0,
+          "dim": 15,
+          "eigenvalue": 224
+        },
+        {
+          "l": 15,
+          "mult": 0,
+          "dim": 16,
+          "eigenvalue": 255
+        },
+        {
+          "l": 16,
+          "mult": 0,
+          "dim": 17,
+          "eigenvalue": 288
+        },
+        {
+          "l": 17,
+          "mult": 0,
+          "dim": 18,
+          "eigenvalue": 323
+        },
+        {
+          "l": 18,
+          "mult": 0,
+          "dim": 19,
+          "eigenvalue": 360
+        },
+        {
+          "l": 19,
+          "mult": 0,
+          "dim": 20,
+          "eigenvalue": 399
+        },
+        {
+          "l": 20,
+          "mult": 1,
+          "dim": 21,
+          "eigenvalue": 440
+        }
+      ],
+      "gap_l": 12,
+      "lambda_1": 168,
+      "rail_placement": {
+        "on_fibonacci": "F_7^2 - 1",
+        "on_lucas": null,
+        "on_face": null,
+        "off_all": false
+      }
+    }
+  ]
+}
