@@ -1,0 +1,46 @@
+{
+  "task": "Z",
+  "paper": "200",
+  "version": "v0.3",
+  "outcome": "HALT",
+  "halt_reason": "structural anchor S_5(31) = 0 did not reproduce under Definition A as defined in the brief",
+  "definition": "A (chi_5(5) = 0; ramified prime included; 1-indexed by prime ordinal, p_1 = 2)",
+  "seed": 200,
+  "n_primes_generated": 200,
+  "preflight_prime_check": {
+    "p_1": 2,
+    "p_5": 11,
+    "p_31": 127,
+    "all_ok": true
+  },
+  "anchor": {
+    "index": 31,
+    "p_n": 127,
+    "S_5_at_anchor_definition_A": -6,
+    "S_5_at_anchor_definition_B_diagnostic": -5,
+    "expected": 0,
+    "match": false
+  },
+  "tight_regime_diagnostic": {
+    "range": [1, 33],
+    "definition_A_S5_values": [
+      -1, -2, -2, -3, -2, -3, -4, -3, -4, -3, -2, -3, -2, -3, -4, -5,
+      -4, -3, -4, -3, -4, -3, -4, -3, -4, -3, -4, -5, -4, -5, -6, -5,
+      -6
+    ],
+    "definition_A_zero_count": 0,
+    "paper_199_section_6_1_expected_zero_count": 14,
+    "match_paper_199_figure": false,
+    "discrepancy": 14
+  },
+  "bin_decision": null,
+  "bin_decision_reason_null": "anchor failure precludes the regime computation that the bin rule operates on",
+  "pre_registration_commit": "61aff82",
+  "files": {
+    "brief": "task_brief.md",
+    "locked_script": "task_z_within_regime_null.py",
+    "results_md": "task_z_results.md",
+    "findings": "findings.md"
+  },
+  "flag_to_cinc": "Paper 200 sec.5 / Paper 199 anchor convention needs CinC clarification before Task Z can be re-run. See findings.md for candidate causes."
+}
