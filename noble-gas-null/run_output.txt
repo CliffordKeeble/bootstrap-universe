@@ -1,0 +1,21 @@
+Level 0 (atoms): [2, 3, 6, 12, 20, 30] (6 values)
+Level 1: 31 distinct positive integers ≤ 100
+         Noble gas hits: [2, 10, 18, 36]
+Level 2: 98 distinct positive integers ≤ 100
+         Noble gas hits: [2, 10, 18, 36, 54, 86]
+Level 3: 100 distinct positive integers ≤ 100
+         Noble gas hits: [2, 10, 18, 36, 54, 86]
+
+=== FINAL (depth 3) ===
+Expressible integers ≤ 100: 100 / 100 = 100.0%
+Noble gases hit: [2, 10, 18, 36, 54, 86] (6/6)
+
+Integers ≤ 100 NOT expressible: []
+Count: 0
+
+Expressible integers ≤ 86: 86/86 = 100.0%
+P(specific Z hit | uniform): 1.000
+P(all 6 noble gases hit | uniform & independent): 1.000
+
+BUT: noble gases are NOT randomly distributed — they're highly composite, often near factorials/squares.
+The cheap-fitting diagnosis stands: ~100% of integers ≤ 86 are expressible.
