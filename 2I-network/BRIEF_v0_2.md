@@ -176,4 +176,96 @@ One of:
 
 ## Mr Code's report
 
-*[To be filled in by Mr Code.]*
+**Verdict**: **FAIL — diverging** (plus null-distinguishability fail at
+level 0 that v0.1 missed). Long form: [findings_v0_2.md](findings_v0_2.md).
+
+### Refinement scheme used and rationale
+
+Both schemes as specified by the brief, no deviations. Scheme A through
+level 1 only (stop-on-fail triggered); Scheme B through level 1 (level 2
+discretionary per brief and not warranted given Scheme A result).
+
+The 600 tetrahedral cells of the 600-cell were identified as 4-cliques
+of the vertex-edge graph (verified count = 600 exactly).
+
+Pre-registration committed before any v0.2 compute at `32dc678`.
+
+### Observables table (Scheme A)
+
+| Level | N | E | avg_deg | λ₁ raw | λ₁·N^(2/3) | dev from 50.4 | null mean | null std | z | protocol |
+|-------|---|---|---|---|---|---|---|---|---|---|
+| 0 | 120 | 720 | 12.00 | 2.291796 | **55.757** | **+10.55%** | 91.83 | 21.72 | **−1.66** | outside 10%; \|z\|<2 |
+| 1 | 840 | 1440 | 3.43 | 0.165660 | **14.748** | **−70.76%** | 9.94 | 2.84 | +1.70 | **STOP-ON-FAIL** |
+| 2 | — | — | — | — | — | — | — | — | — | not run |
+| 3 | — | — | — | — | — | — | — | — | — | not run |
+| 4 | — | — | — | — | — | — | — | — | — | not run |
+
+(Informational: implementation smoke-test gave Scheme A level 2 at
+λ₁·N^(2/3) = 5.38, deviation −89.34%. Confirms the diverging trend.
+Not part of the official sweep.)
+
+### Observables table (Scheme B)
+
+| Level | N | E | avg_deg | λ₁ raw | λ₁·N^(2/3) | dev from 50.4 | null mean | null std | z |
+|-------|---|---|---|---|---|---|---|---|---|
+| 0 | 120 | 720 | 12.00 | 2.291796 | **55.757** | **+10.55%** | 91.83 | 21.72 | **−1.66** |
+| 1 | 720 | 3120 | 8.67 | 0.809429 | **65.023** | **+28.92%** | 32.21 | 8.57 | +3.83 |
+
+### Convergence
+
+- Scheme A: +10.55% → −70.76% (→ −89% per smoke test). Diverging away,
+  monotonic, sharp drop.
+- Scheme B: +10.55% → +28.92%. Drifting away in the *opposite*
+  direction from Scheme A.
+- At level 1, the two schemes differ by a factor of 4.4× (14.75 vs
+  65.02). The result is strongly construction-sensitive.
+
+### Verdict (per brief's options)
+
+**FAIL — diverging.** λ₁·N^(2/3) moves away from 50.4 as N grows, in
+*both* refinement schemes, in *opposite directions*. The 600-cell
+N=120 match was a single-point coincidence, not a refinement-invariant
+signature.
+
+Compounding the failure: the **null distinguishability test fails at
+level 0**: z = −1.66, |z| < 2. The 600-cell's spectral gap is not
+statistically distinguishable from random graphs at matched (N, E,
+degree-sequence). The v0.1 "11% match to 50.4" finding therefore
+needs to be downgraded — the value sits in the low-gap tail of the
+random 12-regular distribution, not at a structurally privileged
+position.
+
+### Honest limitations
+
+- **Edge subdivision is not a true 3-manifold mesh refinement.** It
+  adds 1D filaments along original edges, not 3D bulk refinement.
+  A future Scheme C (proper simplicial cell subdivision into smaller
+  tetrahedra) is the natural successor test.
+- **Scheme B level 2 not run.** Discretionary per brief; not informative
+  given Scheme A failure.
+- **`expected_degree_graph` null** preserves degree sequence in expectation
+  only; a stricter `configuration_model` null would give a tighter
+  distribution but the qualitative |z|<2 finding at level 0 would persist.
+
+### Pattern flags
+
+- **Pattern 75 (null)**: satisfied at every level with 20 samples. The
+  level-0 null check is the most consequential finding — the
+  600-cell does not stand out at 2σ against random 12-regular graphs.
+- **Pattern 39 (DERIVED vs OBSERVED)**: 600-cell graph and target
+  50.436 are DERIVED; refined-graph spectra and null comparisons are
+  OBSERVED. The v0.1 "11% match" was OBSERVED single-point; v0.2's
+  failure of refinement-invariance and null-distinguishability is
+  also OBSERVED.
+- **Pattern 19 (adversary)**: the adversary's attack vector that v0.2
+  was supposed to defuse — "refinement scheme chosen to give 50.4 by
+  construction" — instead becomes a *positive* adversary finding:
+  *no* reasonable refinement gives 50.4. The v0.1 single-point match
+  was construction-dependent, not construction-robust.
+- **Pattern 9 (multiple paths to truth)**: Scheme A and Scheme B were
+  meant to converge; instead they diverge in *opposite* directions
+  by factor 4.4×. Pattern 9 fires as failure detector.
+
+### Compute budget
+
+Total v0.2 runtime: under 10 seconds. Well inside the 30-minute budget.
