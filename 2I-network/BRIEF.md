@@ -186,4 +186,83 @@ One of:
 
 ## Mr Code's report
 
-*[To be filled in by Mr Code.]*
+**Verdict**: **FAIL — construction (primary and secondary)**. Stop-on-fail
+at N=120 triggered. Long form: [findings.md](findings.md).
+
+### Construction chosen and rationale
+
+Pre-registered choice: face-sharing in R³ via reflection through face plane,
+with vertex-merge consolidation at ε = 1×10⁻⁶ tolerance. Secondary
+(triggered when primary failed at N=120): axis-sharing in R³ via 180° rotation
+about the shared axis. Tertiary (diagnostic, run since the other two failed
+trivially): vertex-sharing via translation by 2×direction.
+
+Pre-registration committed before any compute at `06cbd9b` (see
+[PRE_REGISTRATION.md](PRE_REGISTRATION.md)).
+
+### Observables table
+
+| construction | N | λ₁ raw | λ₁ / ⟨deg⟩ | λ₁ · N^(2/3) | d | null λ₁ | null d | 2I z-score |
+|---|---|---|---|---|---|---|---|---|
+| face       |  12 | 1.0000 | 0.5455 |  5.241 | n/a  | 0.503 ± 0.376 | 0.84 |  +1.32 |
+| face       |  60 | 0.0477 | 0.0243 |  0.731 | 2.55 | 0.033 ± 0.018 | 0.94 |  +0.80 |
+| face       | 120 | 0.0477 | 0.0241 |  1.161 | 2.66 | 0.005 ± 0.003 | 0.98 | +14.54 |
+| axis       |  12 | 0.2583 | 0.1409 |  1.354 | n/a  | 0.503 ± 0.376 | 0.84 |  −0.65 |
+| axis       |  60 | 0.0464 | 0.0236 |  0.712 | 2.20 | 0.033 ± 0.018 | 0.94 |  +0.73 |
+| axis       | 120 | 0.0266 | 0.0134 |  0.646 | 2.29 | 0.005 ± 0.003 | 0.98 |  +7.37 |
+| vertex     |  12 | 1.0000 | 0.5455 |  5.241 | n/a  | 0.503 ± 0.376 | 0.84 |  +1.32 |
+| vertex     |  60 | 0.7327 | 0.2020 | 11.230 | 1.94 | 0.700 ± 0.090 | 1.87 |  +0.36 |
+| vertex     | 120 | 0.7776 | 0.1816 | 18.919 | 2.18 | 0.616 ± 0.039 | 2.45 |  +4.12 |
+| **600-cell ref** | **120** | **2.2918** | **0.1910** | **55.757** | **1.42** | **5.290 ± 0.058** | **n/a** | **−51.6** |
+
+N = 600, 1200, 6000 **not run**, per stop-on-fail at N = 120.
+
+### Plots
+
+No plots generated (only three N values per construction; runs halted at N=120).
+See findings.md "Plots" section for the verbal trend.
+
+### Verdict
+
+**FAIL — construction.** None of the three R³ constructions, nor even the
+600-cell reference, gets within 10% of the pre-registered target of 168 in
+any of the three normalisations at N=120. The R³ face-sharing rule was
+geometrically vacuous (icosahedra don't pack in R³; the consolidation
+mechanism never fired), producing a tree. Axis-sharing same. Vertex-sharing
+produced the only non-trivial structure but is still 9× off from the target.
+
+**Central caveat for CinC**: the 600-cell graph itself, the brief's known-answer
+target, gives λ₁·N^(2/3) = 55.76 — off from the pre-registered 168 by a
+factor of 3. A volume-corrected reading (168 · V(S³/2I)^(2/3) ≈ 50) is within
+~12% of the 600-cell value. This suggests the literal "168" in the brief
+may be missing a volume normalisation factor; this is not a question I can
+adjudicate without reading Paper 117 (which the brief tells me not to read).
+**Flagging to CinC.**
+
+### Honest limitations
+
+- R³ embedding was the wrong choice for face/axis-sharing closure
+  (the brief anticipated this with the N=120 stop-on-fail clause).
+- The 600-cell reference is built exactly (DERIVED), but a *growth rule*
+  that produces it from a single icosahedron seed was not constructed —
+  that requires an S³ embedding or combinatorial-closure rule beyond the
+  pre-registration.
+- Dimension fits at N=120 are unreliable (diameters ≤ ~5–9, fit window
+  too narrow).
+- Heat-kernel α (Observable 3) not reported — too coarse at N≤120.
+
+### Pattern flags
+
+- **Pattern 75 (null)**: random regular graph at matched ⟨deg⟩, 20 samples
+  per N. z-scores reported. All four graphs distinguishable from null at
+  N=120, but distinguishability is not the success criterion.
+- **Pattern 39 (DERIVED vs OBSERVED)**: 600-cell construction and spectrum
+  are DERIVED; the three growth networks and their observables are OBSERVED.
+  The mismatch between the OBSERVED 600-cell value (55.76) and the DERIVED
+  brief target (168) is the most consequential pattern-39 flag in this
+  investigation.
+- **Pattern 19 (adversary)**: the adversary's strongest attack is on the
+  brief's pre-registered numerical target itself. The 3× gap between the
+  600-cell value and 168 is large enough that no construction could
+  reach 168 without violating known graph-Laplacian-vs-continuum scaling
+  relations. This is the finding that most warrants CinC's attention.

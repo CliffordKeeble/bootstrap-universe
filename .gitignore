@@ -1,3 +1,7 @@
 # Claude Code working files — keep local, not public
 CLAUDE.md
 .claude/
+
+# Python bytecode
+__pycache__/
+*.pyc
