@@ -144,4 +144,110 @@ One of:
 
 ## Mr Code's report
 
-*[To be filled in by Mr Code.]*
+**Verdict**: **FAIL — wrong-dimension AND null-indistinguishable**
+(two pre-registered failure modes fire concurrently). Long form:
+[findings_icosahedral_lag_v0_1.md](findings_icosahedral_lag_v0_1.md).
+
+### Construction choices
+
+Continuous S³ quaternion states (Cliff-confirmed via AskUserQuestion;
+chosen over S²/Doyle–McMullen for tractability). Drift element
+c = (φ/2, 1/(2φ), 1/2, 0), a 600-cell vertex realising 2π/5 rotation,
+quaternion order 10. Coupling: all-to-all uniform K_ij = 1/(N−1).
+Lag: single global integer τ.
+
+Operating point from pre-data sweep (N=30, T=2000): ε = 0.025, τ = 3.
+Verdict params: N = 240, T = 8000, transient = 2000, seed = 20260528.
+Pre-registration committed at `7229282` before any compute.
+
+### Observables table
+
+| Run | mean_corr | std_corr | d_s | small-r slope | sat? | sat_frac | λ₁·N^(2/3) |
+|---|---|---|---|---|---|---|---|
+| **icosahedral + lag** | −0.0042 | 0.5018 | **25.07** | 1.62 | True | 1.000 | 640.5 |
+| null: non-icosahedral | **−0.0042** | **0.5018** | **25.07** | 1.62 | True | 1.000 | — |
+| null: no delay (τ=0) | +1.0000 | 0.0000 | NaN | NaN | False | NaN | — |
+| null: shuffled K | −0.0042 | 0.4717 | 24.41 | 2.90 | True | 1.000 | — |
+
+The non-icosahedral null produces statistics **identical to four decimals**
+with the icosahedral run. The icosahedral symmetry contributes nothing
+distinguishable here.
+
+### Verdict
+
+**FAIL — wrong-dimension AND null-indistinguishable.**
+
+- d_s ≈ 25, well outside [2.5, 3.5] (target). This is the signature of
+  a noise-dominated similarity matrix on N independent uniform unit
+  vectors in ℝ⁴, *not* a 3-manifold spectrum.
+- mean_corr = −1/(N−1) and std_corr ≈ 1/2 (= 1/√4 for ℝ⁴) are **exactly**
+  the values predicted for N independent uniform points on S³ — the
+  dynamics is producing this trivial attractor, not emergent structure.
+- The non-icosahedral null gives identical results, so the icosahedral
+  drift is not doing the work.
+- The no-delay null fully syncs (single-point attractor), so lag is
+  needed *just to prevent sync*, but it doesn't produce structure.
+
+### Anti-circularity self-audit
+
+All four pre-registered checks pass cleanly:
+1. K is all-to-all, no spatial labelling. ✓ (rank-1 up to diagonal)
+2. τ is a single global integer. ✓
+3. Initial conditions uniform random on S³. ✓
+4. Observables use time-averaged correlations only. ✓
+
+The FAIL is honest, not circular. The dynamics genuinely does not
+produce emergent S³ structure with this construction.
+
+### Honest limitations
+
+- **Periodic drift, not chaotic.** The 2I element c has quaternion
+  order 10, so self-iteration is periodic. A chaotic A₅-equivariant
+  Riemann-sphere map (Doyle–McMullen, with non-trivial Julia set)
+  was *not* tested; this is the strongest remaining adversary hedge.
+  Out of scope per pre-registration.
+- **Operating-point sweep showed a binary phase diagram** (sync vs
+  uniform random) — no intermediate "structured" regime was found
+  in the (ε, τ) grid swept. A narrower band might exist but the
+  binary collapse is robust across 60 grid points.
+- **N=240, T=8000** modest relative to brief's allowance; larger N
+  drifts the correlation matrix further toward the random-matrix
+  limit, not closer to manifold structure.
+- **Shuffled-K null was non-degenerate** (K_ij ∼ U(0,2) symmetrised)
+  per pre-reg; still gave identical d_s to the all-to-all case.
+
+### Pattern flags
+
+- **Pattern 75 (null)**: three nulls run, **two genuinely informative**.
+  Non-icosahedral null: identical statistics → icosahedral symmetry is
+  not load-bearing. Shuffled-K null: nearly identical → coupling
+  topology accident is not the cause. The no-delay null is informative
+  by degeneracy only (full sync).
+- **Pattern 39 (DERIVED vs OBSERVED)**: 2I drift element c is DERIVED.
+  The binary phase diagram, the d_s=25 result, and the null-match are
+  all OBSERVED.
+- **Pattern 19 (adversary)**: anti-circularity audit was the hostile
+  reviewer's pre-emptive attack; passed cleanly. Remaining adversarial
+  attack: "you should have used a chaotic map, not a periodic one."
+  Hedged in limitations.
+
+### What this says across the programme
+
+This is the **third independent FAIL** in the 2I-to-S³ line:
+
+- v0.1 static (face-/axis-/vertex-sharing in ℝ³): tree-like, λ₁ off by
+  orders of magnitude
+- v0.2 static (600-cell refinements): diverging from 50.4 under
+  refinement, null-indistinguishable
+- v0.1 lag (this work): wrong dimension, null-indistinguishable
+
+**Three constructions, three different rulings-out of independent
+routes to the conjecture.** The honest synthesis: 2I symmetry alone —
+combinatorial, refined, or coupled — does not appear to generate
+S³-like 3-manifold structure in any of the constructions tried. Each
+FAIL has hedges (e.g., "try a *chaotic* map next"), but the cumulative
+weight is substantive negative evidence.
+
+### Compute budget
+
+≈ 8 seconds total — well under the 30-minute budget.
