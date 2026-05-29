@@ -191,4 +191,99 @@ Per sub: what Paper 203 v0.2 should say given these results
 
 ## Mr Code's report
 
-*[To be filled in by Mr Code.]*
+**Headline**: Sub 1 PARTIAL with structural improvement, Sub 2 PARTIAL,
+Sub 3 FAIL-as-stated with reframable 3D version. Long form:
+[findings_paper_203_algebra_v0_1.md](findings_paper_203_algebra_v0_1.md).
+
+All Sympy exact symbolic over ℤ[φ]. Pre-registration at `6b6b8f7`.
+
+### Sub 1 — §5 hinge
+
+- **(1.a) `(Γ_adj/5^(1/4))² = −I₂`** ✓ PASS
+- **(1.b) `σ(Γ_adj) = −Γ_adj`** literal: ✗ FAIL.
+  Actual relationship: **`σ(Γ_adj) = −Γ_seed`** ✓.
+  Galois conjugation realises a seed↔adj swap, not a self-negation.
+- **(1.c)** Conserved form found: `M = [[√5·d, −c], [c, d]]`.
+  Group composition `R(t₁)R(t₂) = R(t₁+t₂)` ✓.
+- **(1.d) Canonical commutator**: **`[Z, Γ_seed] = −2·Γ_adj`** ✓.
+  X = Z (Hermitian), P = Γ_seed (golden-real), their commutator
+  lands proportional to Γ_adj. **This is the structural i-role
+  that Mr A demanded.**
+- **(1.e)** H-dependent. H = Z preserves M; H = K does not.
+
+**Verdict**: **PARTIAL** — the canonical commutator [Z, Γ_seed] = −2·Γ_adj
+is the structural i-role result. The §5 hinge no longer turns on a
+symbol; it turns on this relation. Recommendation: v0.2 §5 replaces
+"i ↔ −i is complex conjugation" with this canonical commutator result
+and the Galois seed/adj swap.
+
+### Sub 2 — Time tension
+
+- **(2.a)** Only **one** fourth-gamma candidate with +√5·I square exists
+  in the tensor basis: **Γ⁰ = Z⊗Γ_seed**.
+- **(2.b)** Iteration tower: spectral radius cascade 5^(n/4) confirmed
+  (my code initially reported operator norm; corrected to spectral
+  radius in the report). Confirms §6 cascade is "multiply by 5^(1/4)"
+  iteration, not "square the previous" (Mr A's §6 catch vindicated).
+- **(2.c)** `exp(t·Γ⁰) = cosh(5^(1/4)t)I₄ + sinh(5^(1/4)t)(Γ⁰/5^(1/4))`
+  — non-compact boost family.
+- **(2.d)** Γ⁰ and G₁ (= K⊗Γ_seed) both have +√5·I square AND
+  anticommute — two different timelike directions in (2,2). The
+  iteration tower (M₂) and exp(t·Γ⁰) family (M₄) live in different
+  algebras. Share scale 5^(1/4), not the same object.
+
+**Verdict**: **PARTIAL** — the two pictures share the eigenvalue scale
+but are not the same algebraic object. Recommendation: v0.2 explicitly
+states these are two distinct algebraic structures sharing scale, and
+clarifies the 4D algebra as 3 space + 1 time-character (not 4 space).
+
+### Sub 3 — Chirality circularity
+
+- **(3.a)** Enumerated all 4-tuples of mutually anticommuting ±√5·I
+  gammas in the 36-candidate basis. **Only (2,2) signature is
+  constructible** (6 cliques). **(1,3) and (3,1) NOT constructible** in
+  this basis.
+- **(3.b)** All 6 (2,2) cliques give **(Γ⁵)² = +25·I₄ = +5²·I₄**.
+- **(3.c)** The brief's target value **−5^(3/2)·I₄ is NOT achieved
+  in any 4D signature in this basis.** It IS achieved in 3D — by the
+  (1,2) signature, uniquely so (cross-check `sub3_3d_check.py`).
+- Mr A's "3/2 encodes three-ness" catch **fully vindicated**: −5^(3/2)
+  is the 3-gamma chirality value, not a 4-gamma one. The exponent
+  literally counts gammas (3 × 1/2 = 3/2).
+
+**Verdict**: **FAIL as the brief literally states it**, with a
+reframable 3D version that does hold. Recommendation: v0.2 §8 withdraws
+Constraint 3 as a "(1,3)-from-(2,2)" claim; states instead that
+(Γ⁵)² = −5^(3/2)·I₄ is the 3D chirality of Paper 191's (1,2) signature
+distinguishing it from (2,1). The selection of D=3 must come from
+Constraints 1 (Borwein) and 2 (Paper 117); chirality is a consistency
+check, not an independent selection.
+
+**Net effect on §8 headline**: from "three independent constraints
+select D=3" to "two constraints select D=3; chirality verifies
+Lorentzian signature within D=3". More honest and more defensible.
+
+### Cross-sub flags
+
+- **`σ(Γ_adj) = −Γ_seed`**: Galois conjugation of ℚ(√5)/ℚ realises a
+  **seed↔adj duality**. This may be the deepest single algebraic fact
+  in the report. v0.2 can use it to recast the §5 hinge as "the i of
+  QM is the Galois-conjugating element of ℚ(√5)/ℚ".
+- **(2,2) is the maximum signature over ℤ[φ] tensor basis**. (1,3)
+  requires either a richer field (ℚ(5^(1/4))) or a different algebraic
+  structure. v0.2 must acknowledge this is a hard constraint, not a
+  choice.
+- **`[Z, Γ_seed] = −2·Γ_adj`** is the §5 hinge in a single equation.
+
+### Pattern flags
+
+- **Pattern 75 (null)**: addressed each sub. The discriminator for
+  i-role identification is the canonical commutator landing on Γ_adj
+  (not on J).
+- **Pattern 39**: Sub 1 elevates Paper 203 v0.1's §5 hinge from
+  FRAMEWORK to DERIVED for the canonical-commutator role.
+- **Pattern 19 (adversary)**: Mr A's three catches all bite. Sub 3
+  goes beyond his catch to find an algebraic obstruction to (1,3)
+  constructibility in ℤ[φ] — confirming his "the exponent 3/2 already
+  encodes three-ness" attack and providing the algebraic mechanism
+  for it.
