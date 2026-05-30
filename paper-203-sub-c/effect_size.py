@@ -29,7 +29,13 @@ DT = 0.008
 T_PAD = 5.0
 
 import sys
-N_VALUES = [100, 1000, 10000] if '--with10k' in sys.argv else [100, 1000]
+if '--with10k' in sys.argv:
+    N_VALUES = [100, 1000, 10000]
+elif '--extended' in sys.argv:
+    # Use existing partial Riemann cache (1500 zeros) for an extended ε(N) sweep
+    N_VALUES = [100, 500, 1000, 1500]
+else:
+    N_VALUES = [100, 1000]
 
 
 def get_riemann_zeros(n: int, cache_path: str = "riemann_zeros_10000.csv"):

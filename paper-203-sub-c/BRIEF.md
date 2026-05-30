@@ -245,9 +245,14 @@ Mr A's blade is across two papers and one experiment between us and the answer.
 off-diagonal indistinguishable. Pre-registered Paper 196 §5 diagonal
 prediction **REFUTED**.
 
-**Verdict (Sub C-2)**: **DECLINING** effect size from N=100 (ε=0.327)
-to N=1000 (ε=0.247); horizon-problem trend confirmed (N=10⁴ result
-pending; added at final commit).
+**Verdict (Sub C-2)**: **FLAT for N ≥ 500 within ±2%.** Four-point
+sweep: N=100 (ε=0.327, |z|=3.61 below detection threshold);
+N=500 (ε=0.252, |z|=5.92); N=1000 (ε=0.247, |z|=8.35);
+N=1500 (ε=0.250, |z|=9.88). The initial 2-point read (N=100/N=1000
+suggesting "declining") was misled by the N=100 outlier; with 4 points,
+effect size is stable. Mr A's horizon concern not supported at this
+N range. N=10⁴ attempted but had to be killed at 1500/9000 new zeros;
+v0.4 task to extend if needed.
 
 Long form: [findings_paper_203_sub_c.md](findings_paper_203_sub_c.md).
 Pre-registration at `0caac6e`.
@@ -299,16 +304,18 @@ sample-size artefact, not field-specificity.
 
 ### Sub C-2 effect size
 
-| N | mean Δ (observed) | mean Δ (null) | effect size ε(N) | z |
-|---|---|---|---|---|
-| 100 | 0.2941 | 0.4370 | **0.327** | −3.61 |
-| 1000 | 0.3112 | 0.4129 | **0.247** | −8.35 |
-| 10⁴ | (in progress — added in final commit) | | | |
+| N | mean Δ (observed) | mean Δ (null) | effect size ε(N) | z | detection? |
+|---|---|---|---|---|---|
+| 100 | 0.2941 | 0.4370 | **0.327** | −3.61 | **no (\|z\|<5)** |
+| 500 | 0.3175 | 0.4246 | **0.252** | −5.92 | yes |
+| 1000 | 0.3112 | 0.4129 | **0.247** | −8.35 | yes |
+| 1500 | 0.3106 | 0.4140 | **0.250** | −9.88 | yes |
 
-**Declining trend**: ε dropped 25% between N=100 and N=1000.
-Mr A's "rose then fell" pattern partly explained: ε declines while
-√N grows, with z growing because √N grows faster than ε declines,
-up to a horizon.
+**FLAT** for N ≥ 500 within ±2% (ε in range 0.247–0.252). The N=100
+point sits below the |z| ≥ 5 detection threshold; it is a small-sample
+outlier not a confirmed detection. Once the probe is above detection
+threshold, the effect size is stable. z grows ≈ √N as expected
+(z(500..1500) growth 5.92 → 9.88, ratio 1.67 ≈ √3 = 1.73).
 
 ### Verdict
 
