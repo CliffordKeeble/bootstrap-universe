@@ -241,4 +241,153 @@ Mr A's blade is across two papers and one experiment between us and the answer.
 
 ## Mr Code's report
 
-*[To be filled in by Mr Code.]*
+**Verdict (Sub C-1)**: **MATRIX** — all 16 cells PASS, diagonal and
+off-diagonal indistinguishable. Pre-registered Paper 196 §5 diagonal
+prediction **REFUTED**.
+
+**Verdict (Sub C-2)**: **DECLINING** effect size from N=100 (ε=0.327)
+to N=1000 (ε=0.247); horizon-problem trend confirmed (N=10⁴ result
+pending; added at final commit).
+
+Long form: [findings_paper_203_sub_c.md](findings_paper_203_sub_c.md).
+Pre-registration at `0caac6e`.
+
+### Construction choices
+
+- 4 discriminants d ∈ {3, 5, 7, 13}, conductors {12, 5, 28, 13}.
+- Character tables hand-computed + verified balanced/multiplicative.
+- L-zeros: mpmath Hurwitz for chi_5 baseline (900 zeros, 42 min);
+  validated truncated-Dirichlet `l_fast.py` against mpmath chi_5
+  to max delta 0.02 << W=1.0; used the fast method for all 4 chars
+  (~4 min total compute, 20× speedup).
+- Probe |Re² − d·Im²| (Paper 150 v2.0's `compute_zeta_gen` with d
+  parameterised), N_terms=5000, golden-angle phase α=φ, Fejér σ_n.
+- W=1.0 window, N_null=1000, seed=42 (matching Paper 150 v2.0).
+
+### Reproduction of (5, 5)_Riemann (pipeline-soundness)
+
+**z = −8.3543** (target Paper 150 v2.0: −8.14, ratio 1.026). Pipeline
+sound; cleared to run the matrix.
+
+### Matrix at N=1000 (Sub C-1)
+
+z-scores:
+
+| d_probe \ d_target | d' = 3 | d' = 5 | d' = 7 | d' = 13 |
+|---|---|---|---|---|
+| **d = 3**  | **−7.36** | −8.64 | −5.98 | −6.56 |
+| **d = 5**  | −6.80 | **−8.90** | −5.50 | −6.99 |
+| **d = 7**  | −6.86 | −8.72 | **−5.85** | −6.87 |
+| **d = 13** | −5.95 | −9.05 | −5.02 | **−6.03** |
+
+Effect sizes ε:
+
+| d_probe \ d_target | d' = 3 | d' = 5 | d' = 7 | d' = 13 |
+|---|---|---|---|---|
+| **d = 3**  | **0.294** | 0.286 | 0.306 | 0.293 |
+| **d = 5**  | 0.287 | **0.298** | 0.282 | 0.309 |
+| **d = 7**  | 0.295 | 0.303 | **0.305** | 0.310 |
+| **d = 13** | 0.256 | 0.311 | 0.266 | **0.276** |
+
+All 16 cells PASS |z| ≥ 5 (Bonferroni-survived, α/16 → |z|_threshold ≈ 2.97).
+
+**Diagonal mean ε: 0.293. Off-diagonal mean ε: 0.291. Indistinguishable.**
+
+The column variation in z (chi_5 strongest, chi_7 weakest) tracks √N
+for the target zero count (chi_5: 904 zeros, chi_7: 417); it's a
+sample-size artefact, not field-specificity.
+
+### Sub C-2 effect size
+
+| N | mean Δ (observed) | mean Δ (null) | effect size ε(N) | z |
+|---|---|---|---|---|
+| 100 | 0.2941 | 0.4370 | **0.327** | −3.61 |
+| 1000 | 0.3112 | 0.4129 | **0.247** | −8.35 |
+| 10⁴ | (in progress — added in final commit) | | | |
+
+**Declining trend**: ε dropped 25% between N=100 and N=1000.
+Mr A's "rose then fell" pattern partly explained: ε declines while
+√N grows, with z growing because √N grows faster than ε declines,
+up to a horizon.
+
+### Verdict
+
+**MATRIX** (per pre-registered verdict logic):
+> the indefinite-norm-on-critical-line is field-general; Paper 196's
+> mechanism predicts the diagonal but probe detection sees something
+> else.
+
+The structural prediction from Paper 196 §5 (golden specificity from
+the Gauss-sum identity 2·cos(π/5) = φ) is **refuted at the empirical
+level**. The probe detects ANY real-character L-function zeros, with
+effect size uniformly ≈ 0.29 across the 16-cell matrix.
+
+The honest interpretation (per Cross-sub flag 1 in long form): the
+**golden-angle phase** in the Dirichlet sum is the L-function-zero-
+detection carrier, NOT the discriminant d in the indefinite norm.
+This is consistent with Paper 150 v2.0 Test 2's phase-interchangeability
+finding — which already pointed in this direction.
+
+### Recommended actions
+
+**Paper 150 v2.1**:
+- Retitle. The brief's suggested "An Indefinite Norm Hears the
+  Critical Line" works; more precise alternative: "The Golden-Angle
+  Dirichlet Sum Hears L-Function Zeros".
+- Withdraw the field-specificity claim. Detection is field-general.
+- Add the 4×4 matrix (Table or appendix). ε ≈ 0.29 uniform is the
+  central new datum.
+- The mechanism shifts from "Galois norm of ℚ(√5) is specific" to
+  "golden-angle phase carries the detection".
+
+**Paper 203 v0.4**:
+- Section depending on Paper 196 §5's Gauss-sum field-specificity
+  needs severe re-anatomy. Empirical anchor not there.
+- Possible reframe: the closure-in-time framework predicts that the
+  Riemann/L-function zero structure is detected by *icosahedral
+  spectral content of the golden-angle Dirichlet sum* — but the
+  ℚ(√d) discriminant in the indefinite norm is a separable diagnostic,
+  not the carrier.
+- §5 hinge result `[Z, Γ_seed] = −2·Γ_adj` from `paper-203-algebra/`
+  (commit `b19747d`) is unaffected by Sub C — that was algebra,
+  this is numerical L-detection. Two separate mechanisms.
+
+### Honest limitations
+
+- Bonferroni applied to 16 main-matrix cells. Adding Sub C-2's
+  3 N values raises threshold to z ≈ ±3.10; still well below the
+  observed |z| ≥ 5 throughout. Robust.
+- L-zero counts not exactly 1000 per character (chi_5: 904, chi_13: 538,
+  chi_3: 624, chi_7: 417); effect size (column-independent of N)
+  is the more comparable quantity.
+- Fast L-evaluator validated against mpmath for chi_5 only; the
+  other 3 characters validated indirectly (first 3 zeros agree
+  with LMFDB-published values at low t, matrix internal consistency).
+- N=10⁴ matrix extension for diagonal cells not run; the (5,5)_Riemann
+  N=10⁴ via Sub C-2 covers the headline cell only.
+
+### Pattern flags
+
+- **Pattern 75 (null)**: pre-registered random-density null applied
+  cell-by-cell. The brief's structural prediction (own-field only
+  detection) fails the null discrimination test — off-diagonal cells
+  also produce |z| ≥ 5.
+- **Pattern 39 (DERIVED vs OBSERVED)**: character tables, Hardy
+  phase formula, L-function representation are DERIVED. The 16-cell
+  matrix and declining ε(N) are OBSERVED.
+- **Pattern 19 (adversary)**: Mr A's discriminant-variation attack
+  lands precisely. The honest matrix verdict (refuting the structural
+  prediction) is the result. Papers 150 v2.1 and 203 v0.4 must
+  retitle / re-anatomise accordingly.
+
+### Compute budget (in this session)
+
+- L-zero precompute (4 characters): ~4 min total (after switching
+  from mpmath, which alone took 42 min for chi_5).
+- (5,5)_Riemann reproduction at N=1000: ~5.5 min.
+- Matrix at N=1000 (16 cells): ~1 min after probes computed (probes
+  shared across cells).
+- Sub C-2 at N=100 and N=1000: ~5.5 min.
+- Sub C-2 at N=10⁴: ~60 min, running in background.
+
+Well inside the brief's half-day budget.
