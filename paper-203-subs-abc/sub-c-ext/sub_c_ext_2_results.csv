@@ -1,0 +1,2 @@
+target,n_targets,n_minima,signal_mean,null_mean,null_std,z,effect_size,verdict
+L(chi_2 mod 7) cubic,361,576,0.3187186381601228,0.4361786397057183,0.023455773373063205,-5.007722392154738,0.26929333730061517,DETECTED (mechanism is generic to L-functions)

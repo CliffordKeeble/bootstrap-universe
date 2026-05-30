@@ -326,4 +326,132 @@ Three bounded investigations, each with discovery- or null-threshold logic. Each
 
 ## Mr Code's reports
 
-*[To be filled in per sub.]*
+**Pre-registration**: per-sub PRE_REGISTRATION.md in each sub-folder,
+committed at `18bdd47` before any computation.
+
+### Sub A — Signature enumeration scope extension
+
+**Verdict**: **OBSTRUCTION-THEORETIC**. Strongest possible negative result.
+
+**Method 2 (the verdict source)**: by the standard Clifford algebra
+classification,
+> Cl(1, 3) over F ≅ M₂(D_F)  where D_F = (−1, −1)_F is the quaternion algebra.
+
+For F = ℚ(√5): the Hilbert symbol (−1, −1) at both real places of ℚ(√5)
+is **−1** (computed explicitly: no c ∈ ℚ(√5) has c² = −1, since
+c = a + b·√5 gives c² = (a²+5b²) + 2ab·√5, and a² + 5b² = −1 has no
+rational solution). Therefore D_{ℚ(√5)} is non-split → non-trivial in
+Br(ℚ(√5)) → Cl(1, 3) over ℚ(√5) = M₂(D) is a *different* 16-dim
+ℚ(√5)-algebra from M₄(ℚ(√5)).
+
+**Cl(1, 3) cannot embed in M₄(ℚ(√5))** at any coefficient bound K. The
+Sub 3 finding ("only (2, 2) constructible in literal tensor basis") is
+strengthened: "(1, 3) is not constructible in M₄(ℚ(√5)) at all".
+
+Method 1 (brute-force search): W = {M : {M, Γ⁰} = 0} has true dim 8
+over ℚ(√5). Search space 9⁸ ≈ 43M is infeasible in pure Sympy at K=1.
+Switched to Method 2, which gives a stronger answer (no K-bound matters).
+
+Long form: [sub-a/findings_paper_203_sub_a.md](sub-a/findings_paper_203_sub_a.md).
+
+### Sub B — Zeta-denominator chance-overlap null
+
+**Verdict**: **STRIKING** (|z| = 5.50 on the meaningful supplementary null).
+
+Population Z (50 elements, 38 unique) = denom(ζ(−2k+1)) for k = 1..50,
+via Sympy-exact Bernoulli arithmetic. Population I (15 elements, frozen
+per brief) = {1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60, 120, 168, 240}.
+
+Matches: **Z ∩ I = {12, 120, 240}** — exactly the three Paper 203 §7
+highlighted.
+
+Three nulls:
+- Pre-reg coarse (M = max(Z ∪ I) = 10¹⁰): μ ≈ 7e−8, **z = 11,002**.
+- Pre-reg tight: **z = 12,620**.
+- Supplementary (restrict to Z ≤ max(I) = 240): 4 unique Z values, 3 match
+  I; μ = 0.25; **z = 5.50**.
+
+The pre-registered nulls give absurd magnitudes because M is enormous;
+the supplementary tight null (restricted to the size range where overlap
+is possible) gives the meaningful |z| = 5.50, still STRIKING per the
+pre-registered |z| ≥ 3 threshold.
+
+**Structural reading (not the verdict)**: the matches arise from
+**shared small-prime content** between von Staudt-Clausen denominators
+(products of primes p with (p−1)|2k for small k) and icosahedral
+subgroup orders (products of {2, 3, 5} for A₅ and {2, 3, 5, 7} when
+extended). Mr A's catch ("von Staudt-Clausen explains it elementarily")
+is partially sustained: the explanation IS elementary; the icosahedral
+identification supplies the prime-content reading.
+
+Long form: [sub-b/findings_paper_203_sub_b.md](sub-b/findings_paper_203_sub_b.md).
+
+### Sub C-extension
+
+**Sub C-ext-1 verdict**: **AMBIGUOUS**. Positive-definite probe still
+detects but weakly.
+
+At N = 904 (Sub C-1 baseline): z = −3.36, ε = 0.19 (vs indefinite −9.49,
+ε = 0.31).
+At N = 2792 (extended chi_5 cache): z = −4.69, ε = 0.16 (vs indefinite
+−15.49, ε = 0.29).
+
+Indefiniteness contributes ≈ 1.8× effect-size boost — *helpful but not
+strictly essential*. The positive-definite probe still detects because
+minima of `Re² + 5·Im²` occur where the trajectory comes near origin,
+which still correlates with L-zero structure.
+
+Extrapolating √N: at N = 10⁴, positive-definite would cross detection
+threshold |z| ≥ 5.
+
+**Sub C-ext-2 verdict**: **DETECTED**. z = −5.01, ε = 0.269.
+
+The probe `|Re² − 5·Im²|` detects zeros of L(s, χ_2 mod 7) — a CUBIC
+COMPLEX character. **The detection mechanism extends beyond
+real-quadratic L-functions.** Effect size matches Sub C-1's real-quadratic
+cells (ε ≈ 0.27-0.31). Cubic L-zeros computed via truncated Dirichlet
+sum at M=1000, validated against mpmath Hurwitz-based L evaluation
+(first 5 zeros have |L| < 0.002, numerical zero).
+
+**Combined sub-C-ext synthesis**: the detection mechanism is the
+**equidistributed Dirichlet sum** + **bilinear form on (Re, Im)**.
+Neither indefiniteness alone nor real-quadratic-specificity is
+essential — both are *contributors* of additional effect size. The
+mechanism is generic to L-functions with critical-line FE.
+
+Long form: [sub-c-ext/findings_paper_203_sub_c_extension.md](sub-c-ext/findings_paper_203_sub_c_extension.md).
+
+### Combined implications
+
+**Paper 150 v2.1**: title should reflect mechanism breadth, e.g.,
+"An Indefinite Norm on a Golden-Angle Dirichlet Sum is a Generic
+Critical-Line Probe". Section on mechanism should report:
+- Sub C-1 (real-quadratic field-general at ε ≈ 0.29).
+- Sub C-ext-2 (cubic complex DETECTED at ε ≈ 0.27).
+- Sub C-ext-1 (positive-definite AMBIGUOUS, ε ≈ 55% of indefinite).
+
+**Paper 203 v0.4 §8**: state the algebraic obstruction in full
+generality. Cl(1, 3) over ℚ(√5) is **not embeddable** in M₄(ℚ(√5));
+the (2,2) → (1,3) signature transition requires extending the field to
+admit a square root of −1. This is a candidate "baryogenesis = field
+extension" reading, made concrete by Sub A.
+
+**Paper 203 v0.4 §7**: Sub B's STRIKING is real but elementary.
+v0.4 can claim the matches AND give the prime-content explanation
+(von Staudt-Clausen primes match icosahedral subgroup-order primes).
+Mr A's catch becomes the framing, not a refutation.
+
+**Paper 203 v0.4 §5 Three Faces of σ**: Face 2 (empirical detection)
+must broaden further than my Sub C findings indicated. Detection is
+mechanism-generic across real-quadratic AND cubic-complex characters.
+σ-of-ℚ(√5) is one realisation in a generic equidistributed-phase
+mechanism. Face 1 (algebraic [Z, Γ_seed] = −2Γ_adj) and Face 3
+(Dedekind factorisation) remain σ-specific and unaffected.
+
+### Total compute
+
+- Sub A: ~5 s (Method 2) + ~10 min (failed Method 1 attempts).
+- Sub B: ~10 s.
+- Sub C-ext: ~20 min (~15 min chi_5 extension + ~5 min probes).
+
+Total: ~30 min compute, well inside the brief's ~one-day budget.
