@@ -46,14 +46,22 @@ def get_riemann_zeros(n: int, cache_path: str = "riemann_zeros_10000.csv"):
         existing = zs
     else:
         existing = []
-    # need to fetch
-    print(f"  fetching Riemann zeros {len(existing)+1}..{n}...")
+    # need to fetch — save incrementally so a kill doesn't waste work
+    print(f"  fetching Riemann zeros {len(existing)+1}..{n}...", flush=True)
     t0 = time.time()
     zs = list(existing)
+    CHECKPOINT_EVERY = 100
     for k in range(len(existing) + 1, n + 1):
         zs.append(float(mp.zetazero(k).imag))
-        if k % 500 == 0:
-            print(f"    {k}/{n} (t_{k} = {zs[-1]:.2f}, {time.time()-t0:.0f}s)")
+        if k % CHECKPOINT_EVERY == 0:
+            # incremental save
+            with open(cache_path, 'w', newline='') as f:
+                w = csv.writer(f)
+                w.writerow(['n', 't_n'])
+                for i, z in enumerate(zs):
+                    w.writerow([i + 1, f"{z:.10f}"])
+            print(f"    {k}/{n} (t_{k} = {zs[-1]:.2f}, {time.time()-t0:.0f}s) [checkpointed]",
+                  flush=True)
     with open(cache_path, 'w', newline='') as f:
         w = csv.writer(f)
         w.writerow(['n', 't_n'])

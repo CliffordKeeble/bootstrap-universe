@@ -330,27 +330,50 @@ finding — which already pointed in this direction.
 
 ### Recommended actions
 
+After Cliff provided Papers 196 v1.0 and 203 v0.3 (post-run), the
+sharpened reading is:
+
+**Important nuance from Paper 196 v1.0**: Paper 196's golden specificity
+is about the **phase lock at arctan(1/φ)** between order-4 conjugate
+characters χ₂, χ₃ mod 5 via the functional equation. That phenomenon
+is genuinely golden-specific (DERIVED from 2·cos(π/5) = φ in the Gauss
+sum). The position-detection phenomenon Paper 150 measures is
+DIFFERENT — the matrix shows it is NOT field-specific. Both Papers
+196 and 150 are individually consistent with their own derivations;
+the cross-paper bridging extension (the brief's structural prediction)
+is what my matrix refutes.
+
 **Paper 150 v2.1**:
-- Retitle. The brief's suggested "An Indefinite Norm Hears the
-  Critical Line" works; more precise alternative: "The Golden-Angle
-  Dirichlet Sum Hears L-Function Zeros".
-- Withdraw the field-specificity claim. Detection is field-general.
-- Add the 4×4 matrix (Table or appendix). ε ≈ 0.29 uniform is the
-  central new datum.
-- The mechanism shifts from "Galois norm of ℚ(√5) is specific" to
-  "golden-angle phase carries the detection".
+- Retitle to reflect the matrix verdict (e.g., "The Golden-Angle
+  Dirichlet Sum Hears Real-Quadratic L-Zeros" — respects the actual
+  test population).
+- Withdraw field-specificity claim. Add 4×4 matrix as Table.
+- Distinguish Paper 196's phase lock (golden-specific, DERIVED) from
+  Paper 150's position-detection (field-general by this matrix).
 
 **Paper 203 v0.4**:
-- Section depending on Paper 196 §5's Gauss-sum field-specificity
-  needs severe re-anatomy. Empirical anchor not there.
-- Possible reframe: the closure-in-time framework predicts that the
-  Riemann/L-function zero structure is detected by *icosahedral
-  spectral content of the golden-angle Dirichlet sum* — but the
-  ℚ(√d) discriminant in the indefinite norm is a separable diagnostic,
-  not the carrier.
-- §5 hinge result `[Z, Γ_seed] = −2·Γ_adj` from `paper-203-algebra/`
-  (commit `b19747d`) is unaffected by Sub C — that was algebra,
-  this is numerical L-detection. Two separate mechanisms.
+- **§5 Three Faces of σ needs sharpening, not abandonment**:
+  - Face 1 (σ(Γ_adj) = ±Γ_seed): unaffected. Exact symbolic from
+    `paper-203-algebra` commit `b19747d`.
+  - Face 2 (empirical position detection): reframe from σ_ℚ(√5)-
+    specific to "indefinite Galois norm + equidistributed phase" as
+    a one-parameter family across real quadratic fields. The σ that
+    matters operationally is the one-parameter family, not σ_ℚ(√5)
+    privileged.
+  - Face 3 (Dedekind factorisation): unaffected. Classical theorem.
+- The closure-in-time framing's "three-faces unification" weakens
+  but does not collapse: each real quadratic field has its own σ,
+  three of those σ's appear in the same algebraic-empirical-
+  mathematical pattern, but no single σ_ℚ(√5) is privileged.
+
+**Paper 196 v1.0**: no action from this sub. Phase lock at arctan(1/φ)
+remains DERIVED and genuinely golden-specific. My matrix doesn't
+challenge it.
+
+**Paper 164**: ℚ(ρ) heptagonal at conductor 7 is tested by my d=7
+cells. The heptagonal-specific structural content (Steinbach
+geometry, 2·cos(π/7) = ρ) is real but does not transmit to position
+detection.
 
 ### Honest limitations
 

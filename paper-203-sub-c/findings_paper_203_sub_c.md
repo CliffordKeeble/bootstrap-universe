@@ -143,6 +143,76 @@ while √N grows, and z = ε · √N · (effect/null_std factors). z grows
 because √N grows faster than ε declines, up to a point — but the
 trend in ε itself confirms a horizon issue.
 
+## Sharpened reading after access to Papers 196 v1.0 and 203 v0.3
+
+After the matrix and Sub C-2 runs completed, Cliff provided Papers 196
+v1.0 and 203 v0.3 (which I did not have during pre-registration). With
+those in hand the interpretation sharpens — and importantly *does not
+change the verdict*, but resolves a possible misreading of the
+structural prediction.
+
+**Paper 196 §5's golden specificity is about the PHASE LOCK at
+arctan(1/φ), not the indefinite-norm position-detection.** Paper 196's
+Theorem (DERIVED) says that for the order-4 conjugate-pair characters
+χ₂, χ₃ mod 5, the functional-equation phase ratio
+arg L(½+it, χ₃) − arg L(½+it, χ₂) is locked to a fixed value
+−arctan(1/φ) (mod π) at every critical-line point, with the locked
+angle forced by 2·cos(π/5) = φ in the Gauss sum τ(χ₂). This IS
+genuinely golden-specific (and the identity sin(2π/q)/sin(π/q) =
+2·cos(π/q) is q-specific, as the brief noted).
+
+**The Sub C-1 matrix tests a DIFFERENT phenomenon.** The probe
+|Re² − d·Im²| applied to the Fejér-weighted golden-angle Dirichlet
+sum is Paper 150 v2.0's instrument for detecting the *positions* of
+L-function zeros, not the phase ratio between two characters. The
+*position detection* turns out to be field-general; the *phase lock*
+remains (per Paper 196) golden-specific.
+
+So the matrix verdict refutes the bridging claim from Paper 196's
+phase-lock golden specificity to Paper 150's position-detection
+golden specificity. The two phenomena are real and consistent with
+their respective derivations; the bridging extension is not.
+
+**Implications for Paper 203 v0.3's §5 Three Faces of σ**:
+
+Paper 203 v0.3 identifies σ_ℚ(√5) — the Galois conjugation
+√5 ↔ −√5 — as the central recurring object, with three faces:
+- Face 1 (algebraic): σ(Γ_adj) = ±Γ_seed (confirmed by my paper-203-algebra
+  Sub 1 at commit `b19747d`).
+- Face 2 (empirical): Paper 150's detection at z = −22.91 for the
+  Galois norm |p² − 5q²| against Dedekind zeros of ℚ(√5).
+- Face 3 (mathematical): σ governs the Dedekind factorisation
+  ζ_ℚ(√5)(s) = ζ(s)·L(s, χ₅).
+
+My matrix shows that Face 2's "detection" is **NOT specific to σ_ℚ(√5)**:
+the same instrument structure with d = 3, 7, or 13 (i.e., σ_ℚ(√3),
+σ_ℚ(√7), σ_ℚ(√13)) detects ζ_ℚ(√d') for any d' equally well.
+
+So the "σ = bridge" claim, as currently stated in Paper 203 v0.3 §5.2,
+overclaims. The honest version: **the indefinite Galois norm — for
+any real quadratic field — applied to the golden-angle Dirichlet sum
+detects ζ_K(s)-like zero structure for any real quadratic K**. The
+specificity to ℚ(√5) in Paper 150 v2.0's headline was a single-cell
+choice; the matrix shows that choice didn't earn its specificity.
+
+Face 1 and Face 3 of σ_ℚ(√5) are unaffected — they are exact algebraic
+results. Face 2 needs reframing: the empirical detection is robust but
+field-general, not σ_ℚ(√5)-specific.
+
+This is consistent with my Cross-sub Flag 1 below: the
+**golden-angle phase α = φ** in the Dirichlet sum is doing the
+detection work, not the discriminant d in the indefinite norm.
+Whether the golden-angle phase choice itself is special (vs other
+irrationals) is a separate question — Paper 150 v2.0 Test 2 found that
+√2, e, π also detect, with √2 ALSO golden-related via continued
+fractions, and e/π less so. The Paper 150 v2.0 finding was already
+that "phase is interchangeable, golden norm is essential" — but the
+matrix shows the latter half is wrong: any d in the norm works.
+**The honest synthesis: the detection mechanism is the
+EQUIDISTRIBUTED PHASE in the Dirichlet sum (any sufficiently dense
+irrational), and the discriminant d in the indefinite norm is
+decoration.**
+
 ## Cross-sub flags
 
 ### Flag 1: matrix is uniformly ~0.29 — what is the probe actually doing?
@@ -224,38 +294,79 @@ precise: it's the golden-angle phase, not the indefinite norm per se.
 
 ## Recommended actions for Papers 150 v2.1 and 203 v0.4
 
-Per pre-registered verdict logic:
+Per pre-registered verdict logic and the sharpened reading after
+Papers 196 v1.0 and 203 v0.3 were made available:
 
 **Paper 150 v2.1**:
 - Retitle to reflect the matrix verdict. "An Indefinite Norm Hears the
-  Critical Line" (the brief's wording) or a sharpened version such as
-  "The Golden-Angle Dirichlet Sum Hears L-Function Zeros".
-- Section §3-§4: the indefinite norm detection result stands as
-  reproduced (z = -8.35 at N=1000). But the discriminant-specific
-  claim must be withdrawn: the probe detects ANY real-character L
-  zeros, not specifically chi_5.
-- Add the 4×4 matrix as Table or appendix. ε ≈ 0.29 uniform across all
-  16 cells is the central new data point.
-- Section §8 (or new section): the mechanism is the GOLDEN-ANGLE PHASE
-  in the Dirichlet sum, not the discriminant in the indefinite norm.
-  Cite Test 2 of Paper 150 v2.0 (phase-interchangeability) which
-  pointed in this direction already.
+  Critical Line" (the brief's wording) or a sharper version such as
+  "The Golden-Angle Dirichlet Sum Hears Real-Quadratic L-Function
+  Zeros". The latter respects the test population (the 4 fields
+  enumerated) without overclaiming.
+- Section §3-§4: the headline detection result (z = -8.35 at N=1000,
+  ratio 1.026 vs Paper 150 v2.0's z = -8.14) is reproduced cleanly.
+  But the field-specificity claim must be withdrawn: |Re² - d·Im²|
+  with ANY d in {3, 5, 7, 13} detects zeros of L(χ_d') for ANY
+  d' in {3, 5, 7, 13}.
+- Add the 4×4 matrix as a Table. ε ≈ 0.29 uniform across all 16 cells.
+- Section §8 (or new section): clarify that Paper 150 v2.0 Test 2
+  already pointed in this direction: "phase is interchangeable, norm
+  is essential" — but the matrix shows the latter half overclaims.
+  The mechanism is the EQUIDISTRIBUTED-PHASE Dirichlet sum (any
+  sufficiently dense irrational phase), not specifically the golden
+  angle and not specifically the d=5 norm.
+- A genuinely golden-specific result that survives: Paper 196 §5's
+  PHASE LOCK at arctan(1/φ) (DERIVED from the Gauss-sum identity
+  2·cos(π/5) = φ). That phenomenon is real and distinct from Paper
+  150's position-detection — the two were conflated in v2.0 by
+  proximity. Paper 150 v2.1 can cleanly separate them.
 
 **Paper 203 v0.4**:
-- Section that depended on Paper 196 §5's Gauss-sum-mediated
-  field-specificity needs severe re-anatomy. The structural prediction
-  did not survive contact with the 4×4 matrix; the empirical anchor
-  Paper 203 v0.3 was banking on is not there.
-- Possible re-frame: the closure-in-time framework predicts that the
-  Riemann/L-function zero structure is detected by *icosahedral
-  spectral content of the golden-angle Dirichlet sum*, with the
-  indefinite-norm structure as a separable diagnostic. This is more
-  honest about what the matrix shows.
-- The §5 hinge of Paper 203 from the algebra Sub (commit b19747d) is
-  unaffected by this finding — that was an exact-symbolic result about
-  the commutator [Z, Γ_seed] = −2·Γ_adj. The Sub-C matrix result
-  concerns a DIFFERENT mechanism (numerical detection of L-zeros by
-  the probe), not the §5 hinge.
+- **§5 "Three Faces of σ" needs sharpening**, not abandonment:
+  - **Face 1 (algebraic)**: σ(Γ_adj) = ±Γ_seed is unaffected by my
+    matrix. Exact symbolic result from paper-203-algebra commit `b19747d`.
+    Stands as DERIVED.
+  - **Face 2 (empirical)**: as currently written, claims σ_ℚ(√5) is
+    the operational core of detecting ζ_ℚ(√5). My matrix shows this
+    overclaims: σ_ℚ(√d) for ANY d in the test set detects ζ_K(s) for
+    ANY real-quadratic K in the test set. The honest reframe: "the
+    indefinite Galois norm of any real quadratic field, applied to a
+    Dirichlet sum with sufficiently dense equidistributed phase,
+    detects ζ_K(s)-like zero structure; the choice of d in the norm
+    is not what selects K." This is still an interesting structural
+    fact — it says the detection mechanism is the *interaction
+    between the indefinite Galois norm and the equidistributed phase*,
+    not σ alone — but the σ-specificity claim must be withdrawn.
+  - **Face 3 (mathematical)**: Dedekind factorisation governed by σ
+    is unaffected. Classical theorem.
+- The closure-in-time framing in v0.3 already acknowledges that the
+  three-faces unification was the framework's "structural payload";
+  with Face 2 reframed, the unification weakens but does not collapse.
+  v0.4 should describe the σ-of-each-real-quadratic-field structure
+  as a one-parameter family, not a single privileged σ_ℚ(√5).
+- The §8 dimensional-selection argument is unaffected (the chirality
+  and Borwein constraints are independent of Sub C-1's matrix).
+- The §6 cascade arithmetic correction in Paper 203 v0.3 (the
+  rule is iterate-by-5^(1/4), not square-each-step) is fully
+  consistent with my paper-203-algebra Sub 2 (2.b) computation.
+
+**Paper 196 v1.0** (no v1.1 action needed from this sub):
+- The phase-lock derivation (§5) is DERIVED and golden-specific.
+  My matrix does NOT undermine it — the phase lock is a different
+  phenomenon (functional-equation phase ratio between order-4
+  characters) from the position detection my matrix tests.
+- Paper 196 §5's title "the locked angle drops out from 2·cos(π/5) = φ"
+  is a correct golden-specific result. Paper 203 v0.4 should be
+  careful not to confuse this with the position-detection mechanism
+  Paper 150 measures.
+
+**Paper 164** (briefly): the ℚ(ρ) heptagonal construction at conductor
+7 (which my matrix tests in the d=7 cells) is consistent with the
+matrix finding — the L(χ_28) zeros are detected by any d in the
+norm, not specifically by the heptagonal d=7. The heptagonal-specific
+structural content of Paper 164 (Steinbach geometry, 2·cos(π/7) = ρ)
+is field-specific in the same way Paper 196's phase lock is — but
+that specificity does not transmit to position detection.
 
 ## Pattern flags
 
