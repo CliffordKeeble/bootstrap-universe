@@ -33,7 +33,7 @@ sys.path.insert(0, str(SUB_C_DIR))
 
 from probe import compute_probe, find_minima, match_to_targets, mc_null
 
-mp.mp.dps = 25
+mp.mp.dps = 15   # default precision; W=1.0 matching tolerates this easily
 
 # Pre-registered constants
 N_TARGET = 2792
@@ -109,27 +109,30 @@ def get_gram_points(n: int = N_TARGET, cache_path: str = "gram_points.csv") -> n
     # g_0 ≈ 17.846 is the lowest Gram point > 0.
     start = len(existing) + 1   # we'll have g[0], g[1], ... = entries 1, 2, ...
     # The k-th entry corresponds to n = k - 1.
-    last_g = existing[-1] if existing else 18.0
+    last_g = existing[-1] if existing else 17.85
     for k in range(start, n + 1):
         n_target = k - 1   # siegeltheta(g) = n_target * pi
         target = mp.mpf(n_target) * mp.pi
-        # Bracket: previous Gram point and previous + 1/log(prev) (the Gram spacing)
-        lo = last_g + mp.mpf('0.1')
-        hi = last_g + mp.pi  # safe upper bound (siegeltheta grows roughly like t*log(t/2pi)/2)
-        # Adjust hi if needed
-        while True:
-            v_lo = mp.siegeltheta(lo) - target
-            v_hi = mp.siegeltheta(hi) - target
-            if v_lo * v_hi < 0:
-                break
-            hi += 1.0
-            if hi - last_g > 20:
-                # safety bail
-                break
+        # Gram spacing: ≈ 2*pi / log(t/(2*pi)) at large t
+        if last_g > 6.5:
+            step = 2.0 * math.pi / math.log(last_g / (2.0 * math.pi))
+        else:
+            step = 1.0
+        guess = last_g + step
         try:
-            g = float(mp.findroot(lambda t: mp.siegeltheta(t) - target, (lo + hi) / 2))
+            g = float(mp.findroot(lambda t: mp.siegeltheta(t) - target, guess))
         except Exception:
-            # fallback: use bisection manually
+            # fallback: bracket bisection
+            lo = last_g + 0.1
+            hi = last_g + 4 * step
+            for _ in range(60):
+                mid = (lo + hi) / 2
+                if mp.siegeltheta(mid) < target:
+                    lo = mid
+                else:
+                    hi = mid
+                if hi - lo < 1e-8:
+                    break
             g = float((lo + hi) / 2)
         gs.append(g)
         last_g = g
@@ -296,7 +299,7 @@ def main():
         else:
             v = "SUSTAIN"
         verdicts[r['label']] = v
-        print(f"  {r['label']}: |z| = {z_abs:.2f} → {v}")
+        print(f"  {r['label']}: |z| = {z_abs:.2f} -> {v}")
 
     # Aggregate
     vs = list(verdicts.values())

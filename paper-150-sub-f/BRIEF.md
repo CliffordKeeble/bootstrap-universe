@@ -145,4 +145,86 @@ Honest expectation, recorded BEFORE the experiment runs: I (CinC) do not have a 
 
 ## Mr Code's report
 
-*[To be filled in.]*
+**Aggregate verdict: SUSTAIN** (strict reading) / **PARTIAL very near SUSTAIN**
+(anti-circularity-adjusted). Either reading triggers stop-on-fail.
+
+**Per brief: I am pausing Paper 150 v2.1 publication. Not uploaded to Zenodo.
+Flagged for CinC adjudication.**
+
+Long form: [findings_paper_150_sub_f.md](findings_paper_150_sub_f.md).
+Pre-registration at `88fc4d3`.
+
+### Detection results (N_target = 2792)
+
+| Target | z | ε |
+|---|---:|---:|
+| Riemann (control) | **−12.56** | 0.234 |
+| Gram | **−14.38** | 0.253 |
+| RvM-random (seed 20260530) | **−9.89** | 0.246 |
+
+Effect sizes ε = 0.234 / 0.253 / 0.246 are **indistinguishable across targets**.
+The probe's correlation with uniformly-random density-matched points is
+essentially the same as with actual Riemann zeros.
+
+### Anti-circularity check (Gram-Riemann distance)
+
+| Statistic | Value |
+|---|---|
+| Median Gram-Riemann distance | **0.378** (< W = 1.0) |
+| Within W | 96.0% |
+| Within W/2 | 66.1% |
+
+Per pre-registration: median < W → Gram-point control is **uninformative**.
+The RvM-random control is the decisive test.
+
+### Pre-registered verdicts
+
+- Gram: |z| = 14.38 → SUSTAIN (but interleaving-uninformative per anti-circularity)
+- RvM-random: |z| = 9.89 → PARTIAL (just below SUSTAIN threshold |z| ≥ 10)
+
+Aggregate per pre-reg conjunction rule ("SUSTAIN on either → SUSTAIN"):
+**SUSTAIN**.
+
+Aggregate adjusted for Gram inadmissibility: **PARTIAL very near SUSTAIN**.
+
+Both readings trigger pause-and-flag.
+
+### What this means for Paper 150
+
+**v2.0's L-function-specific mechanism is refuted.** The probe detects
+uniformly-random density-matched points at the same effect size as
+actual L-zeros.
+
+**v2.1's dense-intersection mechanism is also refuted.** Mr A's catch
+(comparable density alone does not produce fixed correlation) is
+sustained empirically.
+
+What survives: the probe minima distribution has a **non-trivial
+auto-correlation structure with any density-matched target** at ε ≈ 0.25.
+This is the genuine open question — what *about* the probe minima
+produces this density-matched-but-not-Poisson behaviour. Mr A's framing
+"two Poisson processes of comparable rate would give z ≈ 0" implies the
+probe minima are not Poisson-distributed; they have some non-Poisson
+structure that auto-correlates with density.
+
+### Honest pre-vs-post comparison
+
+My pre-registered prior: "weak prior leans COLLAPSE on RvM-random and
+PARTIAL on Gram." Reality: RvM is PARTIAL/SUSTAIN, Gram is uninformative.
+**My prior was wrong on RvM.** This is the second time in this brief
+sequence my structural reading has been overturned by direct test
+(after Sub E's Flag 1 refutation). The pre-registration discipline keeps
+working: claims pre-committed, tests run cleanly, refuted claims stand
+refuted.
+
+### What I will NOT do per brief stop-on-fail
+
+- Attempt to rescue v2.0 or v2.1's mechanism story.
+- Draft v2.2 reframing. CinC adjudicates first.
+- Reinterpret the verdict to avoid the SUSTAIN label.
+
+### Compute
+
+~35 min total: ~30 min Riemann extension at high t (most of it), ~2 min
+Gram via siegeltheta + asymptotic-bracket findroot, ~1 min for probe and
+3 target matchings. Inside the brief's 1-2 hour budget.
