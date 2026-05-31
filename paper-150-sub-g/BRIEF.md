@@ -169,4 +169,104 @@ Whatever Sub G returns, v2.3 lands from there. No further empirical iteration on
 
 ## Mr Code's report
 
-*[To be filled in.]*
+**Verdict: NEAREST-NEIGHBOR SUFFICIENT (H1)** — with a clean, productive
+surprise (see "Findings beyond verdict" below).
+
+Long form: [findings_paper_150_sub_g_target_shuffle.md](findings_paper_150_sub_g_target_shuffle.md).
+Pre-registration at `a3a04a0`.
+
+### Per-shuffle distribution (10 seeds)
+
+| Statistic | z | ε | null_std |
+|---|---:|---:|---:|
+| mean | **−13.84** | 0.263 | **0.00800** |
+| std | 0.287 | 0.005 | 0.00012 |
+| min | −14.25 | 0.255 | 0.00793 |
+| max | −13.21 | 0.273 | 0.00829 |
+
+### Three-way comparison
+
+| Quantity | Riemann (Sub F) | Gap-shuffle (Sub G) | RvM-Poisson (Sub F follow-up) |
+|---|---:|---:|---:|
+| **null_std** | **0.0079** | **0.0080** | **0.0105** |
+| ε | 0.234 | 0.263 | 0.256 |
+| **\|z\|** | **12.56** | **13.84** | **10.39** |
+
+### K_shuffle
+
+K_shuffle = (12.56 − 13.84) / 0.287 = **−4.44**.
+
+**Riemann |z| is 4.44σ BELOW the gap-shuffle distribution mean.**
+0 of 10 shuffles give |z| ≤ Riemann.
+
+### Pre-registered verdict criteria
+
+- K_shuffle < 1.5: **TRUE** (K = −4.44).
+- null_std mean within 15% of Riemann's 0.0079: **TRUE** (0.0080, 1% off).
+- → **H1 NEAREST-NEIGHBOR SUFFICIENT** confirmed.
+
+### Findings beyond verdict — the productive surprise
+
+The K = 4.5σ Riemann-vs-RvM distinction decomposes into:
+
+- **Component A (null tightening)**: gap-shuffle preserves it. Riemann
+  nearest-neighbor structure is enough. Pure 2-point statistic.
+
+- **Component B (signal degradation)**: NEW from Sub G. **Actual Riemann
+  zeros give weaker probe-target alignment than gap-shuffled targets.**
+  Riemann ε = 0.234; gap-shuffle ε mean = 0.263; gap-shuffle |z| = 13.84
+  vs Riemann |z| = 12.56. **The Riemann long-range correlations REDUCE
+  detection by ~10%** in both ε and |z|.
+
+The mechanism story for Paper 150 v2.3:
+- Probe minima distribute on the critical line with approximately
+  GUE-like local spacing (level repulsion at short scales).
+- Null tightening for L-zero targets: 2-point property (H1).
+- Signal alignment is BEST for gap-shuffled targets (same local spacing,
+  no long-range structure conflicting with probe).
+- The actual Riemann |z| being above RvM but below gap-shuffle reflects
+  competing effects: GUE-spacing tightens null (advantage) but
+  long-range correlations degrade alignment (disadvantage). The net is
+  positive (K = 4.5σ Riemann vs RvM) but smaller than gap-shuffle's
+  K vs RvM (about 6σ).
+
+### Pre-vs-post
+
+My weak prior: LONGER-RANGE MATTERS (H2). Reality: H1, null fully
+captured by nearest-neighbor. **Fourth consecutive wrong prior** (Sub E,
+Sub F, Sub F follow-up, Sub G). CinC's prior (H1) was correct.
+
+The productive surprise (gap-shuffle outperforming Riemann) was
+unanticipated by either of us. Sub G earns its keep beyond just
+distinguishing H1 from H2 — it surfaces Component B, which sharpens the
+v2.3 mechanism reading substantially.
+
+### v2.3 directive (per brief)
+
+> "Whatever Sub G returns, v2.3 lands from there. No further empirical
+> iteration on Paper 150 after this."
+
+Per brief: I am ready to assist with v2.3 drafting. The mechanism
+section should now describe:
+1. Probe = 2-point-spacing detector with GUE-like minima distribution.
+2. Detection has TWO components: null tightening (2-point of target) +
+   signal alignment (long-range structure of target).
+3. L-zeros benefit from (1) but suffer slight degradation in (2);
+   net effect is K = 4.5σ Riemann-vs-RvM.
+4. Gap-shuffled L-zeros maximise BOTH components → strongest detection
+   yet observed in the chain.
+
+The Sub F-line retraction stands at full strength in **effect-size**
+terms: Riemann ε < RvM ε < gap-shuffle ε. The probe does not
+"specifically detect L-zeros" by alignment strength.
+In **z-score** terms, Riemann is distinguished from RvM by null
+tightening (4.5σ), but is DOMINATED by gap-shuffle (4.44σ in the other
+direction). So z-space "L-zero specificity" is also refuted at the
+"gap-shuffle vs Riemann" level.
+
+The mechanism is **GUE-spacing-with-Riemann-long-range-anti-correlation**.
+That's the cleanest, most honest statement.
+
+### Compute
+
+~4 min total, inside brief's 5-min estimate.
