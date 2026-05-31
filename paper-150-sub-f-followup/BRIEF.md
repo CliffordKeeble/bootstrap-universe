@@ -137,4 +137,94 @@ Small follow-up that converts Sub F's central admissible-control number from "an
 
 ## Mr Code's report
 
-*[To be filled in.]*
+**Verdict: REJECT SUSTAIN** (K = 4.45σ, ≥ 3). **Reverses Sub F's previous
+SUSTAIN verdict.**
+
+Per brief stop-on-fail: **pausing Paper 150 v2.3 drafting and flagging
+for CinC adjudication.**
+
+Long form: [findings_paper_150_sub_f_followup_rvm_distribution.md](findings_paper_150_sub_f_followup_rvm_distribution.md).
+Pre-registration at `078cc38`.
+
+### Distribution of z across 10 RvM seeds
+
+| Statistic | z | ε |
+|---|---:|---:|
+| mean | **−10.39** | 0.256 |
+| std | 0.488 | 0.012 |
+| min | −11.61 | 0.240 |
+| max | −9.83 | 0.284 |
+| median | −10.19 | 0.250 |
+
+| Riemann control | −12.56 | 0.234 |
+
+### K-σ comparison
+
+**K = (12.56 − 10.39) / 0.488 = 4.45.**
+
+Riemann |z| = 12.56 is above max(RvM |z|) = 11.61; 0 of 10 RvM draws
+reach the Riemann |z|. **K ≥ 3 → REJECT SUSTAIN.**
+
+### Critical nuance — z-space vs ε-space tell different stories
+
+In **z-space**: Riemann is distinguished from RvM at K = 4.5σ (REJECT SUSTAIN).
+
+In **ε-space**: Riemann ε = 0.234 is **smaller than every RvM seed**
+(RvM min ε = 0.240, mean 0.256). The probe matches RvM-random points
+*slightly more effectively* than Riemann zeros — by effect size.
+
+**The K-σ gap is driven by null_std, not signal magnitude**:
+- Riemann null_std = 0.0079 (tighter)
+- RvM null_std ≈ 0.0105 (~25% wider)
+
+Riemann's null is tighter because Riemann zeros have GUE-like pair
+correlation (Montgomery), giving them more uniform 1D spacing than
+Poisson-clustered RvM-random points. This GUE-uniform spacing
+sharpens the random-minima MC null variance, which inflates |z|
+even though signal_mean − null_mean is essentially the same.
+
+### What this means
+
+**Partial L-zero specificity, but in a way none of v2.0, v2.1, v2.2
+mechanism stories captured.**
+
+- The probe doesn't detect L-zeros at a *higher effect size* than
+  random points (refuting v2.0's L-zero specificity in ε).
+- The probe DOES produce *statistically more significant* detection
+  against L-zeros than against random points (sustaining a different
+  kind of L-zero specificity at K = 4.5σ in z).
+- The mechanism: L-zeros' GUE-like spacing tightens the null variance.
+  The detection is **mediated by target spacing structure**, not by
+  the probe being "tuned" to L-functions.
+
+This is a more interesting and subtle finding than Sub F's "probe detects
+density not zeros." Sub F was correct in ε-space but missed the z-space
+distinction.
+
+### Pre-registered prior vs reality
+
+My prior: CONFIRM SUSTAIN (K ≈ 1.8σ guess). Reality: **REJECT SUSTAIN
+(K = 4.45σ)**. **Third consecutive wrong prior**: Sub E Flag 1, Sub F
+RvM expectation, now Sub F follow-up CONFIRM SUSTAIN. Pattern: I keep
+under-weighting L-zero specificity. Pre-reg discipline keeps working
+— refuted priors stand refuted; I don't reframe to save them.
+
+### What v2.3 needs (pending CinC)
+
+NOT "the probe detects density not zeros" (refuted by K-σ in z).
+NOT "the probe is L-zero-specific" (refuted by ε comparison).
+The honest reading:
+> "The probe matches the local critical-line density of any
+> target at similar effect size (ε ≈ 0.25). The statistical significance
+> of the match is higher for L-zeros than for random points (z = 4.5σ
+> above the RvM distribution) because L-zeros' GUE-like pair correlation
+> tightens the random-minima null variance. The detection is
+> **spacing-mediated L-zero-specific**, not **probe-mechanism-specific**."
+
+This needs CinC adjudication for the v2.3 framing.
+
+### Compute
+
+~5 minutes total. Probe Re/Im computed once (45s), 10 RvM seeds at
+~30s each (matching + 1000-trial MC null), distribution analysis
+instantaneous.
