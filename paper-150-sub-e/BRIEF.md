@@ -100,4 +100,100 @@ Quick methodology test of one specific mechanism claim. Direct computational ver
 
 ## Mr Code's report
 
-*[To be filled in.]*
+**Verdict**: **DECORATION-REFUTED** (mean off-diagonal sharing = 29.83%,
+below 40% threshold).
+
+Per the brief's stop-on-fail clause, I am **pausing v2.1 drafting and
+flagging for CinC**. My Flag 1 "d is decoration" claim was an overclaim.
+
+Long form: [findings_paper_150_sub_e.md](findings_paper_150_sub_e.md).
+Pre-registration at `cfd7599`.
+
+### Sharing matrix (% of row-d's 100 lowest minima within ±0.02 of column-d's)
+
+|          | d'=3 | d'=5 | d'=7 | d'=13 |
+|----------|-----:|-----:|-----:|------:|
+| **d=3**  | 100.0% | 32.0% | 31.0% | 28.0% |
+| **d=5**  | 32.0% | 100.0% | 32.0% | 29.0% |
+| **d=7**  | 31.0% | 32.0% | 100.0% | 27.0% |
+| **d=13** | 28.0% | 29.0% | 27.0% | 100.0% |
+
+**Mean off-diagonal: 29.83%**. Chance baseline: 0.39% ± 0.60% (Monte
+Carlo, 1000 trials). The observed 29.83% is ~50σ above chance — **there
+IS shared structure**, but only ~30% of minima, not the ≥80% that would
+support "decoration."
+
+### Honest reading
+
+- **~30% of top-100 minima are d-invariant** ("structural class"): far
+  above chance (0.4%), but only a minority. These arise from features
+  of Z_φ(t) where both Re² and Im² are near-zero simultaneously.
+- **~70% of top-100 minima are d-specific**: they shift with d, reflecting
+  intersections of the trajectory with the d-dependent null cone
+  Re² = d·Im².
+- **Sub C-1's matrix-uniform ε ≈ 0.29 is NOT explained by "decoration"**.
+  It is explained by L-zero density: L-zeros are dense enough (~0.4/unit)
+  that both structural and d-specific probe minima land near L-zeros
+  at similar effect sizes.
+
+### Per-d minima statistics (informational)
+
+| d | total local minima | top-100 lowest val | top-100 highest val |
+|---|---:|---:|---:|
+| 3  | 2437 | 0.00456 | 0.06583 |
+| 5  | 2449 | 0.00256 | 0.07094 |
+| 7  | 2452 | 0.00592 | 0.07311 |
+| 13 | 2454 | 0.00796 | 0.09128 |
+
+Density is d-uniform (~2.5/unit); locations are mostly d-specific.
+
+### What v2.1 mechanism section should say (pending CinC)
+
+NOT "d is decoration" (refuted).
+
+Instead something like:
+> "The probe minima come in two classes: a structural class (~30%) that
+> is d-invariant, arising from features of the equidistributed Dirichlet
+> sum itself; and a d-specific class (~70%) tracing the null cone Re² =
+> d·Im² of the bilinear form. The L-zero density on the critical line is
+> high enough that both classes correlate with L-zeros at similar effect
+> size (ε ≈ 0.29 across the Sub C-1 4×4 matrix). The d-specific
+> minima do contribute substantive structure; the matrix-uniform effect
+> size reflects the L-zero distribution, not minima-location identity."
+
+This is a more nuanced and *more honest* mechanism reading. It's also
+**less interesting** from a mechanism-derivation standpoint — the
+probe's d-dependence is real and substantial. v2.1 cannot claim "the
+discriminant doesn't matter."
+
+### Implications for Paper 203 v0.4
+
+My Sub C and Sub C-extension recommendations that built on Flag 1 (e.g.,
+"σ-of-ℚ(√5) is just one realisation of an equidistributed-phase generic
+mechanism") **need re-examination**. The mechanism is generic in
+*statistics* (uniform effect size) but **NOT in minima locations**.
+Each d carries genuinely different minima. The σ-of-ℚ(√d) framing per
+field has more empirical content than I suggested.
+
+I do NOT have time in this session to redraft those Sub C / Sub C-ext
+recommendations; flagging that they need CinC re-review in light of
+Sub E.
+
+### Pattern flags
+
+- **Pattern 19**: my Flag 1 reading was a falsifiable structural claim;
+  Sub E ran the falsification test and the claim failed. The pre-reg
+  discipline worked: the data answered cleanly, the verdict thresholds
+  were pre-committed, and the REFUTED outcome stands.
+- **Pattern 39**: minima locations are OBSERVED. The 30% sharing vs
+  0.4% chance baseline gives DERIVED status to the *existence* of
+  shared structure, while the absence-of-decoration is DERIVED from
+  the threshold comparison.
+- **Pattern 75**: chance baseline computed via 1000-trial Monte Carlo.
+  Result well-separated from chance (50σ above).
+
+### Compute
+
+~7 seconds total. Far inside the 1-2 hour brief budget. Z_φ(t)
+evaluated once for all four d values, then probes formed and minima
+identified per d in milliseconds.
