@@ -1,0 +1,61 @@
+|A5| = 60
+sum of squared irrep dims = 60  (must equal |A5|)
+
+--- character orthonormality (should be I) ---
+  < 1| ['1', '0', '0', '0', '0']
+  < 3| ['0', '1', '0', '0', '0']
+  <3'| ['0', '0', '1', '0', '0']
+  < 4| ['0', '0', '0', '1', '0']
+  < 5| ['0', '0', '0', '0', '1']
+orthonormal: True
+
+--- augmentation ideal of regular rep (dim |A5|-1 = 59) ---
+  irrep  1: dim 1, multiplicity 0, block dim  0
+  irrep  3: dim 3, multiplicity 3, block dim  9
+  irrep 3': dim 3, multiplicity 3, block dim  9
+  irrep  4: dim 4, multiplicity 4, block dim 16
+  irrep  5: dim 5, multiplicity 5, block dim 25
+augmentation ideal dim = 59  (must equal 59)
+non-trivial isotypic blocks: 4  -> dims {'3': 9, "3'": 9, '4': 16, '5': 25}
+
+--- class-sum (central) operator eigenvalues per irrep ---
+    omega_C(V) = |C| * chi_V(C) / dim(V);  central ops act as this scalar
+     class |        3 |       3' |        4 |        5
+        2A |       -5 |       -5 |        0 |        3   <- NON-uniform
+        3A |        0 |        0 |        5 |       -4   <- NON-uniform
+        5A | 2 + 2*sqrt(5) | 2 - 2*sqrt(5) |       -3 |        0   <- NON-uniform
+        5B | 2 - 2*sqrt(5) | 2 + 2*sqrt(5) |       -3 |        0   <- NON-uniform
+
+Structural conclusion (Schur's lemma):
+  The augmentation ideal splits into 4 pairwise-inequivalent isotypic
+  blocks. Every A5-invariant operator is a scalar on each block, and the
+  four scalars are independent. A uniform spectrum across all 59 modes
+  (equipartition) requires all four scalars equal -> the operator is a
+  multiple of the identity -> it has NO gap. A non-trivial spectral GAP
+  is, by construction, a distinction between modes; equipartition is the
+  ABSENCE of distinction. The two pull opposite ways.
+  => 'spectral gap forces equipartition' is in structural tension; this
+     is the landscape the Test A operator-lock must be chosen against.
+
+--- Test B scoping: the 0.02% residual ---
+  L(1,chi5)        = 0.430408940964004
+  alpha^-1 = 59/L  = 137.078936761526
+  CODATA 2022      = 137.035999177000
+  residual (abs)   = 0.0429375845257880   (OVERSHOOT)
+  residual (frac)  = 0.0003132  -> need a NEGATIVE correction of this size
+  effective count  = alpha^-1_CODATA * L = 58.981519  (vs 59)
+
+  scale menu of FORCED augmentation quantities (no fitted coeff):
+           1/119 = 0.0084034
+           1/239 = 0.0041841
+          59/119 = 0.49580
+          59/239 = 0.24686
+         1/119^2 = 0.000070616
+         1/239^2 = 0.000017507
+      1/(59*119) = 0.00014243
+      1/(59*239) = 0.000070917
+           L/239 = 0.0018009
+
+  target fractional correction = 0.0003132
+  (NOTE: scale comparison only. No 'best form' is selected here -
+   the single correction form is locked in the pre-reg, then run once.)
