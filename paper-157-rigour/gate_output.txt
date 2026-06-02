@@ -1,0 +1,54 @@
+=== scale the gate must reach (context only) ===
+  uniform count      N = 59
+  CODATA-match count N = 58.981519
+  deficit            = 0.0184807   (fractional 0.0003132)
+  => a passing forced weighting must perturb uniform weights
+     (all w_i = 1) by ~3e-4, i.e. land at 1 +/- ~0.001.
+
+=== CANDIDATE W1: chi5 character weighting ===
+  raw chi5-contraction per block: {'3': '18', "3'": '18', '4': '-16', '5': '10'}
+  -> values are O(10), one negative (block 4 = -16). To become
+     multiplicative weights ~1 they need a free additive shift +
+     scale: TWO free knobs not fixed by structure. And the spread
+     is O(1), not O(1e-3).
+  GATE: FAIL. Not forced (shift+scale free); wrong scale (O(1)).
+
+=== CANDIDATE W2: dimension / second-augmentation weighting ===
+  Removing one more whole mode: N_eff = 59 - 1 = 58  (residual ~1.7%,
+  overshoots the gap by ~55x and wrong side of 58.98). Integer mode
+  removal cannot reach 58.98.
+  Forced fractional deficit must equal 0.0185. Nearest clean forms:
+      1/59 = 0.01695
+      1/54 = 0.01852
+    deficit  = 0.018481
+  1/59 = 0.01695 (off 9%); 1/54 = 0.01852 fits but 54 is not a
+  forced A5/augmentation quantity (not 59, 60, 11, 119, 239, ...).
+  Any '54' is reverse-engineered from the target = peeking.
+  GATE: FAIL. No forced dimensional quantity equals 0.0185 without
+        reference to 58.98; integer mode removal lands on 58.
+
+=== CANDIDATE W3: spectral-gap (eigenvalue-ratio) weighting ===
+  Class-sum eigenvalue omega_C(V) = |C| chi_V(C)/dim(V) per block:
+    2A (15, edge 2-fold)    : 3=-5, 3'=-5, 4=0, 5=3
+    3A (20, face 3-fold)    : 3=0, 3'=0, 4=5, 5=-4
+    5A (12, vertex 5-fold)  : 3=2 + 2*sqrt(5), 3'=2 - 2*sqrt(5), 4=-3, 5=0
+  Eigenvalues are O(1) integers/algebraics, include 0 and negatives,
+  so they are not directly multiplicative weights; forming weights
+  needs a free shift+scale (unforced), and the generating-set choice
+  (which class?) is itself unforced -> different classes give
+  different weights. Spread is O(1), not O(1e-3).
+  GATE: FAIL. Operator/generating-set choice free; wrong scale.
+
+================================================================
+GATE VERDICT: NULL BY CONSTRUCTION.
+No candidate (W1/W2/W3) yields a forced, peek-free weighting rule
+at the required ~3e-4 scale. Every rep-theoretic weighting from
+{characters, dimensions, operator spectra} produces O(1) deviations
+from uniform; the residual needs O(1e-3). Bridging 3 orders of
+magnitude requires a fitted small parameter = the four-knobs trap
+the brief (§1, §4) forbids.
+=> Per brief §2/§6: HALT. The 0.031% residual is the honest
+   precision ceiling of a convergence result, not a forced block-
+   weight correction. 157 stays OBSERVED at corrected 0.031%;
+   convergence argument (Pattern 9) stands; no numerology acquired.
+================================================================
